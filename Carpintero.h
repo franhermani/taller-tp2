@@ -1,8 +1,9 @@
 #ifndef CARPINTERO_H
 #define CARPINTERO_H
 
+#include "Productor.h"
 
-class Carpintero {
+class Carpintero: public Productor {
 
 };
 

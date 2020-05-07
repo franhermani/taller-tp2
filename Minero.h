@@ -1,8 +1,9 @@
 #ifndef MINERO_H
 #define MINERO_H
 
+#include "Recolector.h"
 
-class Minero {
+class Minero: public Recolector {
 
 };
 

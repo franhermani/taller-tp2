@@ -1,8 +1,9 @@
 #ifndef COCINERO_H
 #define COCINERO_H
 
+#include "Productor.h"
 
-class Cocinero {
+class Cocinero: public Productor {
 
 };
 

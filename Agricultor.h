@@ -1,8 +1,9 @@
 #ifndef AGRICULTOR_H
 #define AGRICULTOR_H
 
+#include "Recolector.h"
 
-class Agricultor {
+class Agricultor: public Recolector {
 
 };
 

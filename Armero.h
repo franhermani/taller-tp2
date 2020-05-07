@@ -1,8 +1,9 @@
 #ifndef ARMERO_H
 #define ARMERO_H
 
+#include "Productor.h"
 
-class Armero {
+class Armero: public Productor {
 
 };
 

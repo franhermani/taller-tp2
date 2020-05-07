@@ -1,8 +1,9 @@
 #ifndef RECOLECTOR_H
 #define RECOLECTOR_H
 
+#include "Trabajador.h"
 
-class Recolector {
+class Recolector: public Trabajador {
 
 };
 
