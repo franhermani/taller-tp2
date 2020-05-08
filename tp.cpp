@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "InputParser.h"
 
 #define OK 0
 #define ERROR 1
@@ -50,9 +51,10 @@ int processMapFile(const char *map_path) {
         std::cout << "Error al abrir el archivo de materias primas\n";
         return ERROR;
     }
-    char materia_prima;
-    while (map_file.get(materia_prima)) {
-        // TODO: enviar cada 'materia_prima' a su cola bloqueante
+    InputParser parser;
+    char c;
+    while (map_file.get(c)) {
+        parser.parseMapChar(c);
     }
     map_file.close();
 
