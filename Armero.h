@@ -4,8 +4,6 @@
 #include "Productor.h"
 
 class Armero: public Productor {
-
 };
-
 
 #endif // ARMERO_H

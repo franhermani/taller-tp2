@@ -4,8 +4,6 @@
 #include "Recolector.h"
 
 class Leniador: public Recolector {
-
 };
-
 
 #endif // LENIADOR_H

@@ -4,8 +4,6 @@
 #include "Trabajador.h"
 
 class Recolector: public Trabajador {
-
 };
-
 
 #endif // RECOLECTOR_H

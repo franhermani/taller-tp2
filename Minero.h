@@ -4,8 +4,6 @@
 #include "Recolector.h"
 
 class Minero: public Recolector {
-
 };
-
 
 #endif // MINERO_H

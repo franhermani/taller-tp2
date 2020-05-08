@@ -4,8 +4,6 @@
 #include "Productor.h"
 
 class Carpintero: public Productor {
-
 };
-
 
 #endif // CARPINTERO_H
