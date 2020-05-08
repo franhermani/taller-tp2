@@ -5,8 +5,8 @@
 
 class InputParser {
 public:
-    int parseWorkersLine(std::string line);
-    int parseMapChar(char c);
+    int parsearLineaTrabajadores(std::string line);
+    int parsearCaracterMapa(char c);
 };
 
 #endif // INPUTPARSER_H
