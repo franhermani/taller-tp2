@@ -20,7 +20,7 @@ public:
     int parsearLineaTrabajadores(const std::string& linea);
     int parsearCaracterRecursos(const char& c);
     void crearTrabajadores(const std::string& trabajador, int cant);
-    void crearRecurso(const char& c);
+    void encolarRecurso(const char& c);
 };
 
 #endif // ORCHESTRATOR_H

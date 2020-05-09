@@ -103,7 +103,7 @@ int Orchestrator::parsearCaracterRecursos(const char& c) {
         std::cout << "Recurso inválido";
         return ERROR;
     }
-    this->crearRecurso(c);
+    this->encolarRecurso(c);
 
     return OK;
 }
@@ -144,7 +144,7 @@ void Orchestrator::crearTrabajadores(const std::string& trabajador, int cant) {
     }
 }
 
-void Orchestrator::crearRecurso(const char &c) {
+void Orchestrator::encolarRecurso(const char &c) {
     Recurso recurso(c);
 
     switch (c) {

@@ -1,7 +1,7 @@
 #include "Cola.h"
 
 void Cola::encolar(Recurso recurso) {
-    this->recursos.push_back(recurso);
+    this->recursos.push_back(std::move(recurso));
 }
 
 Recurso Cola::desencolar() {
