@@ -4,5 +4,4 @@
 class MateriaPrima {
 };
 
-
 #endif // MATERIAPRIMA_H
