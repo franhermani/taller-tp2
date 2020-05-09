@@ -4,6 +4,10 @@
 #include "Recolector.h"
 
 class Minero: public Recolector {
+public:
+    Minero();
+    Minero(const Minero& other) = delete;
+    Minero& operator=(const Minero& other) = delete;
 };
 
 #endif // MINERO_H
