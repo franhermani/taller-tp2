@@ -60,9 +60,9 @@ int Orchestrator::parsearLineaTrabajadores(const std::string& linea) {
             {"Agricultores", "Leniadores", "Mineros",
              "Cocineros", "Carpinteros", "Armeros"};
 
-    std::string delimiter = "=";
-    std::string trabajador = linea.substr(0, linea.find(delimiter));
-    std::string cant = linea.substr(linea.find(delimiter) + 1,
+    std::string delimiter = "=",
+                trabajador = linea.substr(0, linea.find(delimiter)),
+                cant = linea.substr(linea.find(delimiter) + 1,
                                     std::string::npos);
 
     bool trabajador_ok = false;
