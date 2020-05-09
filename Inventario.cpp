@@ -1,11 +1,33 @@
 #include "Inventario.h"
 
-// TODO: de alguna forma tengo que distinguir a que cola depositar
-void Inventario::depositar(MateriaPrima materia_prima) {
+void Inventario::depositarCarbon(Carbon carbon) {
+    this->colaCarbon.encolar(carbon);
 }
 
-// TODO: de alguna forma tengo que distinguir de que cola extraer
-MateriaPrima Inventario::consumir() {
-    MateriaPrima materia_prima;
-    return materia_prima;
+void Inventario::depositarHierro(Hierro hierro) {
+    this->colaHierro.encolar(hierro);
+}
+
+void Inventario::depositarMadera(Madera madera) {
+    this->colaMadera.encolar(madera);
+}
+
+void Inventario::depositarTrigo(Trigo trigo) {
+    this->colaTrigo.encolar(trigo);
+}
+
+Carbon Inventario::consumirCarbon() {
+    return this->colaCarbon.desencolar();
+}
+
+Hierro Inventario::consumirHierro() {
+    return this->colaHierro.desencolar();
+}
+
+Madera Inventario::consumirMadera() {
+    return this->colaMadera.desencolar();
+}
+
+Trigo Inventario::consumirTrigo() {
+    return this->colaTrigo.desencolar();
 }
