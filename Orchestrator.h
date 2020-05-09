@@ -15,11 +15,11 @@ class Orchestrator {
     std::vector<Trabajador> trabajadores;
 public:
     Orchestrator();
-    int procesarArchivoTrabajadores(const char *path);
-    int procesarArchivoMapa(const char *path);
-    int parsearLineaTrabajadores(std::string line);
-    int parsearCaracterMapa(char c);
-    void crearTrabajadores(std::string worker, int quant);
+    int procesarArchivoTrabajadores(const std::string& path);
+    int procesarArchivoMapa(const std::string& path);
+    int parsearLineaTrabajadores(const std::string& line);
+    int parsearCaracterMapa(const char& c);
+    void crearTrabajadores(const std::string& worker, int quant);
 };
 
 #endif // ORCHESTRATOR_H

@@ -23,7 +23,7 @@ Orchestrator::Orchestrator() {
     this->colaMineros = ColaMineros();
 }
 
-int Orchestrator::procesarArchivoTrabajadores(const char *path) {
+int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
     std::ifstream workers_file;
     workers_file.open(path, std::ifstream::in);
     if (! workers_file.good()) {
@@ -40,7 +40,7 @@ int Orchestrator::procesarArchivoTrabajadores(const char *path) {
     return OK;
 }
 
-int Orchestrator::procesarArchivoMapa(const char *path) {
+int Orchestrator::procesarArchivoMapa(const std::string& path) {
     std::ifstream map_file;
     map_file.open(path, std::ifstream::in);
     if (! map_file.good()) {
@@ -52,11 +52,11 @@ int Orchestrator::procesarArchivoMapa(const char *path) {
         if (this->parsearCaracterMapa(c) == ERROR) return ERROR;
     }
     map_file.close();
-    
+
     return OK;
 }
 
-int Orchestrator::parsearLineaTrabajadores(std::string line) {
+int Orchestrator::parsearLineaTrabajadores(const std::string& line) {
     std::string workers[NUM_WORK] = {"Agricultores", "Leniadores", "Mineros",
                                      "Cocineros", "Carpinteros", "Armeros"};
 
@@ -87,23 +87,23 @@ int Orchestrator::parsearLineaTrabajadores(std::string line) {
     return OK;
 }
 
-int Orchestrator::parsearCaracterMapa(char c) {
+int Orchestrator::parsearCaracterMapa(const char& c) {
     switch (c) {
         case 'C':
             Carbon carbon;
-            this->colaMineros.encolar(carbon);
+            this->colaMineros.encolar(std::move(carbon));
             break;
         case 'H':
             Hierro hierro;
-            this->colaMineros.encolar(hierro);
+            this->colaMineros.encolar(std::move(hierro));
             break;
         case 'M':
             Madera madera;
-            this->colaLeniadores.encolar(madera);
+            this->colaLeniadores.encolar(std::move(madera));
             break;
         case 'T':
             Trigo trigo;
-            this->colaAgricultores.encolar(trigo);
+            this->colaAgricultores.encolar(std::move(trigo));
             break;
         case '\n':
             break;
@@ -114,38 +114,38 @@ int Orchestrator::parsearCaracterMapa(char c) {
     return OK;
 }
 
-void Orchestrator::crearTrabajadores(std::string worker, int quant) {
+void Orchestrator::crearTrabajadores(const std::string& worker, int quant) {
     int i;
 
     if (worker == "Agricultores") {
         for (i = 0; i < quant; i ++) {
             Agricultor agricultor;
-            this->trabajadores.push_back(agricultor);
+            this->trabajadores.push_back(std::move(agricultor));
         }
     } else if (worker == "Leniadores") {
         for (i = 0; i < quant; i ++) {
             Leniador leniador;
-            this->trabajadores.push_back(leniador);
+            this->trabajadores.push_back(std::move(leniador));
         }
     } else if (worker == "Mineros") {
         for (i = 0; i < quant; i ++) {
             Minero minero;
-            this->trabajadores.push_back(minero);
+            this->trabajadores.push_back(std::move(minero));
         }
     } else if (worker == "Cocineros") {
         for (i = 0; i < quant; i ++) {
             Cocinero cocinero;
-            this->trabajadores.push_back(cocinero);
+            this->trabajadores.push_back(std::move(cocinero));
         }
     } else if (worker == "Carpinteros") {
         for (i = 0; i < quant; i ++) {
             Carpintero carpintero;
-            this->trabajadores.push_back(carpintero);
+            this->trabajadores.push_back(std::move(carpintero));
         }
     } else if (worker == "Armeros") {
         for (i = 0; i < quant; i ++) {
             Armero armero;
-            this->trabajadores.push_back(armero);
+            this->trabajadores.push_back(std::move(armero));
         }
     }
 }

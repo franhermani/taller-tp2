@@ -15,7 +15,7 @@ void Inventario::depositarMadera(Madera madera) {
 void Inventario::depositarTrigo(Trigo trigo) {
     this->colaTrigo.encolar(trigo);
 }
-
+/*
 Carbon Inventario::consumirCarbon() {
     return this->colaCarbon.desencolar();
 }
@@ -31,3 +31,4 @@ Madera Inventario::consumirMadera() {
 Trigo Inventario::consumirTrigo() {
     return this->colaTrigo.desencolar();
 }
+*/
