@@ -52,7 +52,7 @@ int Orchestrator::procesarArchivoMapa(const char *path) {
         if (this->parsearCaracterMapa(c) == ERROR) return ERROR;
     }
     map_file.close();
-
+    
     return OK;
 }
 
