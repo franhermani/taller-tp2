@@ -10,9 +10,8 @@ Orchestrator::Orchestrator() {
     this->parser = InputParser();
 
     int i;
-    for (i = 0; i < NUM_COLAS; i ++) {
+    for (i = 0; i < NUM_COLAS; i ++)
         this->colas[i] = ColaBloqueante();
-    }
 }
 
 int Orchestrator::procesarArchivoTrabajadores(const char *path) {
@@ -24,7 +23,8 @@ int Orchestrator::procesarArchivoTrabajadores(const char *path) {
     }
     std::string line;
     while (getline(workers_file, line)) {
-        // TODO: parsear linea y crear N trabajadores-threads
+        if (this->parser.parsearLineaTrabajadores(line) == ERROR)
+            return ERROR;
     }
     workers_file.close();
 
@@ -40,7 +40,8 @@ int Orchestrator::procesarArchivoMapa(const char *path) {
     }
     char c;
     while (map_file.get(c)) {
-        this->parser.parsearCaracterMapa(c);
+        if (this->parser.parsearCaracterMapa(c) == ERROR)
+            return ERROR;
     }
     map_file.close();
 
