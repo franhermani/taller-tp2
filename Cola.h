@@ -1,12 +1,12 @@
-#ifndef COLABLOQUEANTE_H
-#define COLABLOQUEANTE_H
+#ifndef COLA_H
+#define COLA_H
 
 #include "MateriaPrima.h"
 #include "Recolector.h"
 
-class ColaBloqueante {
+class Cola {
 public:
     void encolar(MateriaPrima materia_prima);
 };
 
-#endif // COLABLOQUEANTE_H
+#endif // COLA_H
