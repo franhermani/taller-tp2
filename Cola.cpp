@@ -1,11 +1,11 @@
 #include "Cola.h"
 
-void Cola::encolar(MateriaPrima materia_prima) {
-    this->materias_primas.push_back(materia_prima);
+void Cola::encolar(Recurso recurso) {
+    this->recursos.push_back(recurso);
 }
 
-MateriaPrima Cola::desencolar() {
-    MateriaPrima materia_prima = this->materias_primas.front();
-    this->materias_primas.erase(this->materias_primas.begin());
-    return std::move(materia_prima);
+Recurso Cola::desencolar() {
+    Recurso recurso = this->recursos.front();
+    this->recursos.erase(this->recursos.begin());
+    return std::move(recurso);
 }

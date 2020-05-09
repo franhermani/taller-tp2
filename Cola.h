@@ -2,13 +2,13 @@
 #define COLA_H
 
 #include <vector>
-#include "MateriaPrima.h"
+#include "Recurso.h"
 
 class Cola {
-    std::vector<MateriaPrima> materias_primas;
+    std::vector<Recurso> recursos;
 public:
-    void encolar(MateriaPrima materia_prima);
-    MateriaPrima desencolar();
+    void encolar(Recurso recurso);
+    Recurso desencolar();
 };
 
 #endif // COLA_H

@@ -16,10 +16,11 @@ class Orchestrator {
 public:
     Orchestrator();
     int procesarArchivoTrabajadores(const std::string& path);
-    int procesarArchivoMapa(const std::string& path);
-    int parsearLineaTrabajadores(const std::string& line);
-    int parsearCaracterMapa(const char& c);
-    void crearTrabajadores(const std::string& worker, int quant);
+    int procesarArchivoRecursos(const std::string& path);
+    int parsearLineaTrabajadores(const std::string& linea);
+    int parsearCaracterRecursos(const char& c);
+    void crearTrabajadores(const std::string& trabajador, int cant);
+    void crearRecurso(const char& c);
 };
 
 #endif // ORCHESTRATOR_H

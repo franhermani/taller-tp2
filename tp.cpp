@@ -6,12 +6,12 @@
 
 int main(int argc, char *argv[]) {
     Orchestrator orchestrator;
-    const std::string workers_path = argv[1], map_path = argv[2];
+    const std::string trabajadores_path = argv[1], recursos_path = argv[2];
 
-    if (orchestrator.procesarArchivoTrabajadores(workers_path) == ERROR)
+    if (orchestrator.procesarArchivoTrabajadores(trabajadores_path) == ERROR)
         return ERROR;
 
-    if (orchestrator.procesarArchivoMapa(map_path) == ERROR)
+    if (orchestrator.procesarArchivoRecursos(recursos_path) == ERROR)
         return ERROR;
 
     return OK;
