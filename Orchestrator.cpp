@@ -1,6 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Carbon.h"
+#include "Hierro.h"
+#include "Madera.h"
+#include "Trigo.h"
 #include "Orchestrator.h"
 #include "Agricultor.h"
 #include "Leniador.h"
@@ -14,7 +18,6 @@
 #define NUM_WORK 6
 
 Orchestrator::Orchestrator() {
-    //this->parser = InputParser();
     this->colaAgricultores = ColaAgricultores();
     this->colaLeniadores = ColaLeniadores();
     this->colaMineros = ColaMineros();
@@ -77,7 +80,7 @@ int Orchestrator::parsearLineaTrabajadores(std::string line) {
         int quant_i = std::stoi(quant);
         this->crearTrabajadores(worker, quant_i);
     }
-    catch (std::invalid_argument) {
+    catch(std::invalid_argument) {
         std::cout << "Cantidad inválida";
         return ERROR;
     }
@@ -85,19 +88,22 @@ int Orchestrator::parsearLineaTrabajadores(std::string line) {
 }
 
 int Orchestrator::parsearCaracterMapa(char c) {
-    // TODO: enviar cada 'materia_prima' a su cola bloqueante
     switch (c) {
         case 'C':
-            //Carbon carbon;
+            Carbon carbon;
+            this->colaMineros.encolar(carbon);
             break;
         case 'H':
-            //Hierro hierro;
+            Hierro hierro;
+            this->colaMineros.encolar(hierro);
             break;
         case 'M':
-            //Madera madera;
+            Madera madera;
+            this->colaLeniadores.encolar(madera);
             break;
         case 'T':
-            //Trigo trigo;
+            Trigo trigo;
+            this->colaAgricultores.encolar(trigo);
             break;
         case '\n':
             break;
