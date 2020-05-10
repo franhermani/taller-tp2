@@ -11,8 +11,12 @@ int main(int argc, char *argv[]) {
     if (orchestrator.procesarArchivoTrabajadores(trabajadores_path) == ERROR)
         return ERROR;
 
+    orchestrator.iniciarTrabajadores();
+
     if (orchestrator.procesarArchivoRecursos(recursos_path) == ERROR)
         return ERROR;
+
+    orchestrator.imprimirEstadisticas();
 
     return OK;
 }

@@ -19,6 +19,8 @@ Orchestrator::Orchestrator() {
     this->colaAgricultores = ColaAgricultores();
     this->colaLeniadores = ColaLeniadores();
     this->colaMineros = ColaMineros();
+    this->inventario = Inventario();
+    this->acumuladorPuntos = AcumuladorPuntos();
 }
 
 int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
@@ -161,4 +163,21 @@ void Orchestrator::encolarRecurso(const char &c) {
             this->colaAgricultores.encolar(std::move(recurso));
             break;
     }
+}
+
+void Orchestrator::iniciarTrabajadores() {
+    size_t i;
+    for (i = 0; i < this->trabajadores.size(); i ++) {
+//    TODO: lanzar threads
+    }
+}
+
+void Orchestrator::imprimirEstadisticas() {
+    std::cout << "Recursos restantes:";
+    std::cout << "\n  - Trigo: " << this->inventario.obtenerSobrantesTrigo();
+    std::cout << "\n  - Madera: " << this->inventario.obtenerSobrantesMadera();
+    std::cout << "\n  - Carbon: " << this->inventario.obtenerSobrantesCarbon();
+    std::cout << "\n  - Hierro: " << this->inventario.obtenerSobrantesHierro();
+    std::cout << "\n\nPuntos de beneficio acumulados: "
+              << this->acumuladorPuntos.obtenerPuntos() << "\n";
 }

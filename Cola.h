@@ -7,6 +7,7 @@
 class Cola {
     std::vector<Recurso> recursos;
 public:
+    Cola();
     void encolar(Recurso recurso);
     Recurso desencolar();
     const int obtenerLargo();

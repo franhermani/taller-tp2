@@ -1,4 +1,10 @@
+#include <vector>
 #include "Cola.h"
+
+Cola::Cola() {
+    std::vector<Recurso> recursos;
+    this->recursos = recursos;
+}
 
 void Cola::encolar(Recurso recurso) {
     this->recursos.push_back(std::move(recurso));

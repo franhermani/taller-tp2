@@ -1,5 +1,11 @@
-#include <map>
 #include "Inventario.h"
+
+Inventario::Inventario() {
+    this->colaCarbon = Cola();
+    this->colaHierro = Cola();
+    this->colaMadera = Cola();
+    this->colaTrigo = Cola();
+}
 
 void Inventario::depositarCarbon(Recurso recurso) {
     this->colaCarbon.encolar(recurso);
@@ -33,13 +39,18 @@ Recurso Inventario::consumirTrigo() {
     return this->colaTrigo.desencolar();
 }
 
-const std::map<char, int> Inventario::obtenerSobrantes() {
-    std::map<char, int> sobrantes;
+const int Inventario::obtenerSobrantesCarbon() {
+    return this->colaCarbon.obtenerLargo();
+}
 
-    sobrantes['C'] = this->colaCarbon.obtenerLargo();
-    sobrantes['H'] = this->colaHierro.obtenerLargo();
-    sobrantes['M'] = this->colaMadera.obtenerLargo();
-    sobrantes['T'] = this->colaTrigo.obtenerLargo();
+const int Inventario::obtenerSobrantesHierro() {
+    return this->colaHierro.obtenerLargo();
+}
 
-    return sobrantes;
+const int Inventario::obtenerSobrantesMadera() {
+    return this->colaMadera.obtenerLargo();
+}
+
+const int Inventario::obtenerSobrantesTrigo() {
+    return this->colaTrigo.obtenerLargo();
 }
