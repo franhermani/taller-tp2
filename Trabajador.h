@@ -4,7 +4,7 @@
 #include "Thread.h"
 
 class Trabajador: public Thread {
-    virtual void run() override;
+    virtual void run() = 0;
 };
 
 #endif // TRABAJADOR_H
