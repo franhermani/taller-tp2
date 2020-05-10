@@ -1,3 +1,4 @@
+#include <map>
 #include "Inventario.h"
 
 void Inventario::depositarCarbon(Recurso recurso) {
@@ -30,4 +31,15 @@ Recurso Inventario::consumirMadera() {
 
 Recurso Inventario::consumirTrigo() {
     return this->colaTrigo.desencolar();
+}
+
+const std::map<char, int> Inventario::obtenerSobrantes() {
+    std::map<char, int> sobrantes;
+
+    sobrantes['C'] = this->colaCarbon.obtenerLargo();
+    sobrantes['H'] = this->colaHierro.obtenerLargo();
+    sobrantes['M'] = this->colaMadera.obtenerLargo();
+    sobrantes['T'] = this->colaTrigo.obtenerLargo();
+
+    return sobrantes;
 }

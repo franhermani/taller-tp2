@@ -1,6 +1,7 @@
 #ifndef INVENTARIO_H
 #define INVENTARIO_H
 
+#include <map>
 #include "Cola.h"
 #include "Recurso.h"
 
@@ -18,6 +19,7 @@ public:
     Recurso consumirHierro();
     Recurso consumirMadera();
     Recurso consumirTrigo();
+    const std::map<char, int> obtenerSobrantes();
 };
 
 #endif // INVENTARIO_H

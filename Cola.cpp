@@ -9,3 +9,7 @@ Recurso Cola::desencolar() {
     this->recursos.erase(this->recursos.begin());
     return std::move(recurso);
 }
+
+const int Cola::obtenerLargo() {
+    return this->recursos.size();
+}

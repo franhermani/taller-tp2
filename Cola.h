@@ -9,6 +9,7 @@ class Cola {
 public:
     void encolar(Recurso recurso);
     Recurso desencolar();
+    const int obtenerLargo();
 };
 
 #endif // COLA_H
