@@ -2,25 +2,17 @@
 #include <map>
 #include "AcumuladorPuntos.h"
 
-#define OK 0
-#define ERROR 1
-
 AcumuladorPuntos::AcumuladorPuntos() {
     this->puntos = 0;
 }
 
-int AcumuladorPuntos::sumarPuntos(std::vector<Recurso> recursos) {
-    int nuevos_puntos = this->calcularPuntos(recursos);
-    if (nuevos_puntos == ERROR) return ERROR;
-
-    this->puntos += nuevos_puntos;
-
-    return OK;
+void AcumuladorPuntos::sumarPuntos(std::vector<Recurso> recursos) {
+    this->puntos += this->calcularPuntos(recursos);
 }
 
 int AcumuladorPuntos::calcularPuntos(std::vector<Recurso> recursos) {
     std::map<char, int> cantidades = {{'C', 0}, {'H', 0}, {'M', 0}, {'T', 0}};
-    int puntos = 0;
+    int puntos;
 
     size_t i;
     for (i = 0; i < recursos.size(); i ++)
@@ -32,6 +24,8 @@ int AcumuladorPuntos::calcularPuntos(std::vector<Recurso> recursos) {
         puntos = 2;
     } else if (cantidades['C'] == 2 && cantidades['H'] == 2) {
         puntos = 3;
+    } else {
+        puntos = 0;
     }
     return puntos;
 }

@@ -9,7 +9,7 @@ class AcumuladorPuntos {
     int calcularPuntos(std::vector<Recurso> recursos);
 public:
     AcumuladorPuntos();
-    int sumarPuntos(std::vector<Recurso> recursos);
+    void sumarPuntos(std::vector<Recurso> recursos);
     int obtenerPuntos();
 };
 
