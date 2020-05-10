@@ -114,35 +114,23 @@ void Orchestrator::crearTrabajadores(const std::string& trabajador, int cant) {
     int i;
 
     if (trabajador == "Agricultores") {
-        for (i = 0; i < cant; i ++) {
-            Agricultor agricultor;
-            this->trabajadores.push_back(std::move(agricultor));
-        }
+        for (i = 0; i < cant; i ++)
+            this->trabajadores.push_back(new Agricultor());
     } else if (trabajador == "Leniadores") {
-        for (i = 0; i < cant; i ++) {
-            Leniador leniador;
-            this->trabajadores.push_back(std::move(leniador));
-        }
+        for (i = 0; i < cant; i ++)
+            this->trabajadores.push_back(new Leniador());
     } else if (trabajador == "Mineros") {
-        for (i = 0; i < cant; i ++) {
-            Minero minero;
-            this->trabajadores.push_back(std::move(minero));
-        }
+        for (i = 0; i < cant; i ++)
+            this->trabajadores.push_back(new Minero());
     } else if (trabajador == "Cocineros") {
-        for (i = 0; i < cant; i ++) {
-            Cocinero cocinero;
-            this->trabajadores.push_back(std::move(cocinero));
-        }
+        for (i = 0; i < cant; i ++)
+            this->trabajadores.push_back(new Cocinero());
     } else if (trabajador == "Carpinteros") {
-        for (i = 0; i < cant; i ++) {
-            Carpintero carpintero;
-            this->trabajadores.push_back(std::move(carpintero));
-        }
+        for (i = 0; i < cant; i ++)
+            this->trabajadores.push_back(new Carpintero());
     } else if (trabajador == "Armeros") {
-        for (i = 0; i < cant; i ++) {
-            Armero armero;
-            this->trabajadores.push_back(std::move(armero));
-        }
+        for (i = 0; i < cant; i ++)
+            this->trabajadores.push_back(new Armero());
     }
 }
 
@@ -168,7 +156,15 @@ void Orchestrator::encolarRecurso(const char &c) {
 void Orchestrator::iniciarTrabajadores() {
     size_t i;
     for (i = 0; i < this->trabajadores.size(); i ++) {
-//    TODO: lanzar threads
+//    TODO: this->trabajadores[i].start()
+    }
+}
+
+void Orchestrator::finalizarTrabajadores() {
+    size_t i;
+    for (i = 0; i < this->trabajadores.size(); i ++) {
+//    TODO: this->trabajadores[i].join()
+        delete this->trabajadores[i];
     }
 }
 

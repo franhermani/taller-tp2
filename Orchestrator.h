@@ -14,7 +14,7 @@ class Orchestrator {
     ColaAgricultores colaAgricultores;
     ColaLeniadores colaLeniadores;
     ColaMineros colaMineros;
-    std::vector<Trabajador> trabajadores;
+    std::vector<Trabajador*> trabajadores;
     Inventario inventario;
     AcumuladorPuntos acumuladorPuntos;
     int parsearLineaTrabajadores(const std::string& linea);
@@ -26,6 +26,7 @@ public:
     int procesarArchivoTrabajadores(const std::string& path);
     int procesarArchivoRecursos(const std::string& path);
     void iniciarTrabajadores();
+    void finalizarTrabajadores();
     void imprimirEstadisticas();
 };
 

@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
     if (orchestrator.procesarArchivoRecursos(recursos_path) == ERROR)
         return ERROR;
 
+    orchestrator.finalizarTrabajadores();
     orchestrator.imprimirEstadisticas();
 
     return OK;
