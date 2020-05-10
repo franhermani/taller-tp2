@@ -155,15 +155,14 @@ void Orchestrator::encolarRecurso(const char &c) {
 
 void Orchestrator::iniciarTrabajadores() {
     size_t i;
-    for (i = 0; i < this->trabajadores.size(); i ++) {
-//    TODO: this->trabajadores[i].start()
-    }
+    for (i = 0; i < this->trabajadores.size(); i ++)
+        this->trabajadores[i]->start();
 }
 
 void Orchestrator::finalizarTrabajadores() {
     size_t i;
     for (i = 0; i < this->trabajadores.size(); i ++) {
-//    TODO: this->trabajadores[i].join()
+        this->trabajadores[i]->join();
         delete this->trabajadores[i];
     }
 }
