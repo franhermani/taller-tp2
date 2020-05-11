@@ -3,12 +3,16 @@
 
 #include <string>
 #include <vector>
+#include <mutex>
 #include "Cola.h"
 #include "Trabajador.h"
 #include "Inventario.h"
 #include "AcumuladorPuntos.h"
 
 class Orchestrator {
+    std::mutex m_agricultores;
+    std::mutex m_leniadores;
+    std::mutex m_mineros;
     Cola colaAgricultores;
     Cola colaLeniadores;
     Cola colaMineros;

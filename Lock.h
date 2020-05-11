@@ -4,7 +4,7 @@
 #include <mutex>
 
 class Lock {
-    std::mutex &mutex;
+    std::mutex& mutex;
 public:
     explicit Lock(std::mutex &mutex) : mutex(mutex) {
         this->mutex.lock();

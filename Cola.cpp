@@ -5,7 +5,6 @@
 #include "Lock.h"
 
 Cola::Cola() {
-    std::mutex mutex;
     std::vector<Recurso> recursos;
     this->recursos = recursos;
 }
