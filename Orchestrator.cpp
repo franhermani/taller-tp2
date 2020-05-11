@@ -123,7 +123,8 @@ void Orchestrator::crearTrabajadores(const std::string& trabajador, int cant) {
 
     if (trabajador == "Agricultores") {
         for (i = 0; i < cant; i ++)
-            this->trabajadores.push_back(new Agricultor());
+            this->trabajadores.push_back(
+                    new Agricultor(this->colaAgricultores));
     } else if (trabajador == "Leniadores") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(new Leniador());

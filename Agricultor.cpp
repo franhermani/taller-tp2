@@ -1,4 +1,5 @@
 #include "Agricultor.h"
 
-Agricultor::Agricultor() {
+Agricultor::Agricultor(ColaAgricultores *cola) {
+    this->cola = cola;
 }
