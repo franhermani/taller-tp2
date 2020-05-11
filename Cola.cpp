@@ -1,5 +1,6 @@
 #include <vector>
 #include "Cola.h"
+#include "ColaVaciaException.h"
 
 Cola::Cola() {
     std::vector<Recurso> recursos;
@@ -11,6 +12,8 @@ void Cola::encolar(Recurso recurso) {
 }
 
 Recurso Cola::desencolar() {
+    if (this->obtenerLargo() == 0) throw ColaVaciaException();
+
     Recurso recurso = this->recursos.front();
     this->recursos.erase(this->recursos.begin());
     return std::move(recurso);

@@ -1,6 +1,11 @@
 #include "Recolector.h"
 
+#define SLEEP_TIME 50
+
 void Recolector::run() {
-// TODO: recibe una colaBloqueante por parametro y desencola cuando
-// TODO: se cumple la condition variable
+// TODO: desencolar de this->cola cuando se cumple la condition variable
+
+// TODO: dormir SLEEP_TIME
+
+// TODO: encolar en this->inventario
 }
