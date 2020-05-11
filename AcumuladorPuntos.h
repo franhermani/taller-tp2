@@ -10,7 +10,6 @@ class AcumuladorPuntos {
 public:
     AcumuladorPuntos();
     AcumuladorPuntos(const AcumuladorPuntos& other) = delete;
-    AcumuladorPuntos& operator=(const AcumuladorPuntos& other) = delete;
     void sumarPuntos(std::vector<Recurso> recursos);
     int obtenerPuntos();
 };

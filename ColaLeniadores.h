@@ -7,7 +7,6 @@ class ColaLeniadores: public Cola {
 public:
     ColaLeniadores();
     ColaLeniadores(const ColaLeniadores& other) = delete;
-    ColaLeniadores& operator=(const ColaLeniadores& other) = delete;
 };
 
 #endif // COLALENIADORES_H

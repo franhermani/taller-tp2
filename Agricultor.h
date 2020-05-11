@@ -5,9 +5,9 @@
 #include "ColaAgricultores.h"
 
 class Agricultor: public Recolector {
-    ColaAgricultores *cola;
+    ColaAgricultores& cola;
 public:
-    explicit Agricultor(ColaAgricultores *cola);
+    Agricultor(ColaAgricultores& cola) : cola(cola) {}
     Agricultor(const Agricultor& other) = delete;
     Agricultor& operator=(const Agricultor& other) = delete;
 };

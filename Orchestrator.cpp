@@ -16,19 +16,11 @@
 #define NUM_TRABAJADORES 6
 
 Orchestrator::Orchestrator() {
-    this->colaAgricultores = new ColaAgricultores();
-    this->colaLeniadores = new ColaLeniadores();
-    this->colaMineros = new ColaMineros();
-    this->inventario = new Inventario();
-    this->acumuladorPuntos = new AcumuladorPuntos();
-}
-
-Orchestrator::~Orchestrator() {
-    delete this->colaAgricultores;
-    delete this->colaLeniadores;
-    delete this->colaMineros;
-    delete this->inventario;
-    delete this->acumuladorPuntos;
+    this->colaAgricultores = ColaAgricultores();
+    this->colaLeniadores = ColaLeniadores();
+    this->colaMineros = ColaMineros();
+    this->inventario = Inventario();
+    this->acumuladorPuntos = AcumuladorPuntos();
 }
 
 int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
@@ -127,19 +119,24 @@ void Orchestrator::crearTrabajadores(const std::string& trabajador, int cant) {
                     new Agricultor(this->colaAgricultores));
     } else if (trabajador == "Leniadores") {
         for (i = 0; i < cant; i ++)
-            this->trabajadores.push_back(new Leniador());
+            this->trabajadores.push_back(
+                    new Leniador(this->colaLeniadores));
     } else if (trabajador == "Mineros") {
         for (i = 0; i < cant; i ++)
-            this->trabajadores.push_back(new Minero());
+            this->trabajadores.push_back(
+                    new Minero(this->colaMineros));
     } else if (trabajador == "Cocineros") {
         for (i = 0; i < cant; i ++)
-            this->trabajadores.push_back(new Cocinero());
+            this->trabajadores.push_back(
+                    new Cocinero());
     } else if (trabajador == "Carpinteros") {
         for (i = 0; i < cant; i ++)
-            this->trabajadores.push_back(new Carpintero());
+            this->trabajadores.push_back(
+                    new Carpintero());
     } else if (trabajador == "Armeros") {
         for (i = 0; i < cant; i ++)
-            this->trabajadores.push_back(new Armero());
+            this->trabajadores.push_back(
+                    new Armero());
     }
 }
 
@@ -148,16 +145,16 @@ void Orchestrator::encolarRecurso(const char &c) {
 
     switch (c) {
         case 'C':
-            this->colaMineros->encolar(std::move(recurso));
+            this->colaMineros.encolar(std::move(recurso));
             break;
         case 'H':
-            this->colaMineros->encolar(std::move(recurso));
+            this->colaMineros.encolar(std::move(recurso));
             break;
         case 'M':
-            this->colaLeniadores->encolar(std::move(recurso));
+            this->colaLeniadores.encolar(std::move(recurso));
             break;
         case 'T':
-            this->colaAgricultores->encolar(std::move(recurso));
+            this->colaAgricultores.encolar(std::move(recurso));
             break;
     }
 }
@@ -178,14 +175,10 @@ void Orchestrator::finalizarTrabajadores() {
 
 void Orchestrator::imprimirEstadisticas() {
     std::cout << "Recursos restantes:";
-    std::cout << "\n  - Trigo: "
-              << this->inventario->obtenerSobrantesTrigo();
-    std::cout << "\n  - Madera: "
-              << this->inventario->obtenerSobrantesMadera();
-    std::cout << "\n  - Carbon: "
-              << this->inventario->obtenerSobrantesCarbon();
-    std::cout << "\n  - Hierro: "
-              << this->inventario->obtenerSobrantesHierro();
+    std::cout << "\n  - Trigo: " << this->inventario.obtenerSobrantesTrigo();
+    std::cout << "\n  - Madera: " << this->inventario.obtenerSobrantesMadera();
+    std::cout << "\n  - Carbon: " << this->inventario.obtenerSobrantesCarbon();
+    std::cout << "\n  - Hierro: " << this->inventario.obtenerSobrantesHierro();
     std::cout << "\n\nPuntos de beneficio acumulados: "
-              << this->acumuladorPuntos->obtenerPuntos() << "\n";
+              << this->acumuladorPuntos.obtenerPuntos() << "\n";
 }
