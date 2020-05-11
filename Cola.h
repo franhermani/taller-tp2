@@ -2,9 +2,11 @@
 #define COLA_H
 
 #include <vector>
+#include <mutex>
 #include "Recurso.h"
 
 class Cola {
+//    std::mutex mutex;
     std::vector<Recurso> recursos;
 public:
     Cola();
