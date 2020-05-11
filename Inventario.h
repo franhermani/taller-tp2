@@ -23,6 +23,8 @@ public:
     const int obtenerSobrantesHierro();
     const int obtenerSobrantesMadera();
     const int obtenerSobrantesTrigo();
+    Inventario(const Inventario& other) = delete;
+    Inventario& operator=(const Inventario& other) = delete;
 };
 
 #endif // INVENTARIO_H

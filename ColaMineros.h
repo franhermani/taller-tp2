@@ -4,6 +4,10 @@
 #include "Cola.h"
 
 class ColaMineros: public Cola {
+public:
+    ColaMineros();
+    ColaMineros(const ColaMineros& other) = delete;
+    ColaMineros& operator=(const ColaMineros& other) = delete;
 };
 
 #endif //COLAMINEROS_H
