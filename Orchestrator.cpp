@@ -16,9 +16,9 @@
 #define NUM_TRABAJADORES 6
 
 Orchestrator::Orchestrator() {
-    this->colaAgricultores = ColaAgricultores();
-    this->colaLeniadores = ColaLeniadores();
-    this->colaMineros = ColaMineros();
+    this->colaAgricultores = Cola();
+    this->colaLeniadores = Cola();
+    this->colaMineros = Cola();
     this->inventario = Inventario();
     this->acumuladorPuntos = AcumuladorPuntos();
 }

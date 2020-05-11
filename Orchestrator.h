@@ -3,17 +3,15 @@
 
 #include <string>
 #include <vector>
-#include "ColaAgricultores.h"
-#include "ColaLeniadores.h"
-#include "ColaMineros.h"
+#include "Cola.h"
 #include "Trabajador.h"
 #include "Inventario.h"
 #include "AcumuladorPuntos.h"
 
 class Orchestrator {
-    ColaAgricultores colaAgricultores;
-    ColaLeniadores colaLeniadores;
-    ColaMineros colaMineros;
+    Cola colaAgricultores;
+    Cola colaLeniadores;
+    Cola colaMineros;
     std::vector<Trabajador*> trabajadores;
     Inventario inventario;
     AcumuladorPuntos acumuladorPuntos;
