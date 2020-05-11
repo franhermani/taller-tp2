@@ -11,6 +11,8 @@ class Inventario {
     Cola colaTrigo;
 public:
     Inventario();
+    Inventario(const Inventario& other) = delete;
+    Inventario& operator=(const Inventario& other) = delete;
     void depositarCarbon(Recurso recurso);
     void depositarHierro(Recurso recurso);
     void depositarMadera(Recurso recurso);
@@ -23,8 +25,6 @@ public:
     const int obtenerSobrantesHierro();
     const int obtenerSobrantesMadera();
     const int obtenerSobrantesTrigo();
-    Inventario(const Inventario& other) = delete;
-    Inventario& operator=(const Inventario& other) = delete;
 };
 
 #endif // INVENTARIO_H
