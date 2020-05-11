@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <mutex>
 #include "Orchestrator.h"
 #include "Recurso.h"
 #include "Recolector.h"
@@ -115,18 +114,15 @@ void Orchestrator::crearTrabajadores(const std::string& trabajador, int cant) {
     if (trabajador == "Agricultores") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(
-                    new Recolector(this->m_agricultores,
-                            this->colaAgricultores, this->inventario));
+                    new Recolector(this->colaAgricultores, this->inventario));
     } else if (trabajador == "Leniadores") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(
-                    new Recolector(this->m_leniadores,
-                            this->colaLeniadores, this->inventario));
+                    new Recolector(this->colaLeniadores, this->inventario));
     } else if (trabajador == "Mineros") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(
-                    new Recolector(this->m_mineros,
-                            this->colaMineros, this->inventario));
+                    new Recolector(this->colaMineros, this->inventario));
     } else if (trabajador == "Cocineros") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(
