@@ -3,11 +3,14 @@
 
 #include "Recolector.h"
 #include "ColaAgricultores.h"
+#include "Inventario.h"
 
 class Agricultor: public Recolector {
     ColaAgricultores& cola;
+    Inventario& inventario;
 public:
-    Agricultor(ColaAgricultores& cola) : cola(cola) {}
+    Agricultor(ColaAgricultores& cola, Inventario& inventario) :
+               cola(cola), inventario(inventario) {}
     Agricultor(const Agricultor& other) = delete;
     Agricultor& operator=(const Agricultor& other) = delete;
 };

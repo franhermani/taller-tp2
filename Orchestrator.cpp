@@ -116,15 +116,15 @@ void Orchestrator::crearTrabajadores(const std::string& trabajador, int cant) {
     if (trabajador == "Agricultores") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(
-                    new Agricultor(this->colaAgricultores));
+                    new Agricultor(this->colaAgricultores, this->inventario));
     } else if (trabajador == "Leniadores") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(
-                    new Leniador(this->colaLeniadores));
+                    new Leniador(this->colaLeniadores, this->inventario));
     } else if (trabajador == "Mineros") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(
-                    new Minero(this->colaMineros));
+                    new Minero(this->colaMineros, this->inventario));
     } else if (trabajador == "Cocineros") {
         for (i = 0; i < cant; i ++)
             this->trabajadores.push_back(
