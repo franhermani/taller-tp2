@@ -1,10 +1,10 @@
 #include "Inventario.h"
 
 Inventario::Inventario() {
-    this->colaCarbon = Cola();
-    this->colaHierro = Cola();
-    this->colaMadera = Cola();
-    this->colaTrigo = Cola();
+//    this->colaCarbon = Cola();
+//    this->colaHierro = Cola();
+//    this->colaMadera = Cola();
+//    this->colaTrigo = Cola();
 }
 
 void Inventario::depositarCarbon(Recurso recurso) {
