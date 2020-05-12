@@ -1,28 +1,28 @@
-#include <vector>
+#include <queue>
 #include <mutex>
 #include "Cola.h"
 #include "ColaVaciaException.h"
 #include "Lock.h"
 
-Cola::Cola() {
-    std::vector<Recurso> recursos;
-    this->recursos = recursos;
-}
-
 void Cola::encolar(Recurso recurso) {
-    this->recursos.push_back(std::move(recurso));
+    recursos.push(std::move(recurso));
 }
 
 Recurso Cola::desencolar() {
-    if (this->obtenerLargo() == 0) throw ColaVaciaException();
+    if (estaVacia()) throw ColaVaciaException();
 
-    Lock lock(this->mutex);
-    Recurso recurso = this->recursos.front();
-    this->recursos.erase(this->recursos.begin());
+    Lock lock(mutex);
+    Recurso recurso = recursos.front();
+    recursos.pop();
     return std::move(recurso);
 }
 
+const bool Cola::estaVacia() {
+    Lock lock(mutex);
+    return recursos.empty();
+}
+
 const int Cola::obtenerLargo() {
-    Lock lock(this->mutex);
-    return this->recursos.size();
+    Lock lock(mutex);
+    return recursos.size();
 }

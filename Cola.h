@@ -1,17 +1,19 @@
 #ifndef COLA_H
 #define COLA_H
 
-#include <vector>
 #include <mutex>
+#include <condition_variable>
+#include <queue>
 #include "Recurso.h"
 
 class Cola {
     std::mutex mutex;
-    std::vector<Recurso> recursos;
+    std::condition_variable cv;
+    std::queue<Recurso> recursos;
 public:
-    Cola();
     void encolar(Recurso recurso);
     Recurso desencolar();
+    const bool estaVacia();
     const int obtenerLargo();
 };
 
