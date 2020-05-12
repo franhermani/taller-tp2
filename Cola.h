@@ -6,7 +6,7 @@
 #include "Recurso.h"
 
 class Cola {
-    std::mutex m;
+    std::mutex mutex;
     std::vector<Recurso> recursos;
 public:
     Cola();
