@@ -43,6 +43,10 @@ int Orchestrator::procesarArchivoRecursos(const std::string& path) {
         if (parsearCaracterRecursos(c) == ERROR) return ERROR;
     }
     recursos_file.close();
+    
+    colaAgricultores.cerrar();
+    colaMineros.cerrar();
+    colaLeniadores.cerrar();
 
     return OK;
 }
