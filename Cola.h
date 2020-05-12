@@ -11,13 +11,27 @@ class Cola {
     std::condition_variable cv;
     std::queue<Recurso> recursos;
     bool esta_cerrada;
+
 public:
+    // Constructor
+    // Inicialmente la cola no esta cerrada
     Cola() : esta_cerrada(false) {}
+
+    // Constructor y asignacion por copia deshabilitados
     Cola(const Cola& other) = delete;
     Cola& operator=(const Cola& other) = delete;
+
+    // Agrega un recurso a la cola
     void encolar(Recurso recurso);
+
+    // Quita el recurso mas antiguo de la cola
     Recurso desencolar();
+
+    // Obtiene el largo actual de la cola
     const int obtenerLargo();
+
+    // Cierra la cola
+    // Esto implica que no va a recibir mas recursos
     void cerrar();
 };
 
