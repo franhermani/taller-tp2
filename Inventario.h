@@ -10,7 +10,7 @@ class Inventario {
     Cola colaMadera;
     Cola colaTrigo;
 public:
-    Inventario();
+    Inventario() {}
     Inventario(const Inventario& other) = delete;
     void depositarCarbon(Recurso recurso);
     void depositarHierro(Recurso recurso);
