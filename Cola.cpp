@@ -25,18 +25,18 @@ Recurso Cola::desencolar() {
     return std::move(recurso);
 }
 
-const bool Cola::estaVacia() {
-//    Lock lock(mutex);
-    std::unique_lock<std::mutex> lock(mutex);
-
-    return recursos.empty();
-}
-
 const int Cola::obtenerLargo() {
 //    Lock lock(mutex);
     std::unique_lock<std::mutex> lock(mutex);
 
     return recursos.size();
+}
+
+const bool Cola::estaVacia() {
+//    Lock lock(mutex);
+    std::unique_lock<std::mutex> lock(mutex);
+
+    return recursos.empty();
 }
 
 void Cola::cerrar() {

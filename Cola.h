@@ -17,8 +17,8 @@ public:
     Cola& operator=(const Cola& other) = delete;
     void encolar(Recurso recurso);
     Recurso desencolar();
-    const bool estaVacia();
     const int obtenerLargo();
+    const bool estaVacia();
     void cerrar();
 };
 
