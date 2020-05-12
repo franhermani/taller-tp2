@@ -5,6 +5,7 @@
 #include "Lock.h"
 
 void Cola::encolar(Recurso recurso) {
+    Lock lock(mutex);
     recursos.push(std::move(recurso));
 }
 
