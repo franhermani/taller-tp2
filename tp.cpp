@@ -42,9 +42,9 @@ int main(int argc, char *argv[]) {
 
     // Creo los trabajadores
     int i;
-    for (auto x: trabajadores_map) {
-        std::string trabajador = x.first;
-        int cant = x.second;
+    for (const auto& kv : trabajadores_map) {
+        std::string trabajador = kv.first;
+        int cant = kv.second;
 
         if (trabajador == "Agricultores") {
             for (i = 0; i < cant; i ++)
