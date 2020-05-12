@@ -15,16 +15,16 @@ class Orchestrator {
     std::vector<Trabajador*> trabajadores;
     Inventario inventario;
     AcumuladorPuntos acumuladorPuntos;
-    int parsearLineaTrabajadores(const std::string& linea);
-    int parsearCaracterRecursos(const char& c);
-    void crearTrabajadores(const std::string& trabajador, int cant);
+    const int parsearLineaTrabajadores(const std::string& linea);
+    const int parsearCaracterRecursos(const char& c);
+    void crearTrabajadores(const std::string& trabajador, const int& cant);
     void encolarRecurso(const char& c);
 public:
     Orchestrator() {}
     Orchestrator(const Orchestrator& other) = delete;
     Orchestrator& operator=(const Orchestrator& other) = delete;
-    int procesarArchivoTrabajadores(const std::string& path);
-    int procesarArchivoRecursos(const std::string& path);
+    const int procesarArchivoTrabajadores(const std::string& path);
+    const int procesarArchivoRecursos(const std::string& path);
     void iniciarTrabajadores();
     void finalizarTrabajadores();
     void imprimirEstadisticas();

@@ -13,7 +13,7 @@
 #define NUM_RECURSOS 4
 #define NUM_TRABAJADORES 6
 
-int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
+const int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
     std::ifstream trabajadores_file;
     trabajadores_file.open(path, std::ifstream::in);
     if (! trabajadores_file.good()) {
@@ -30,7 +30,7 @@ int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
     return OK;
 }
 
-int Orchestrator::procesarArchivoRecursos(const std::string& path) {
+const int Orchestrator::procesarArchivoRecursos(const std::string& path) {
     std::ifstream recursos_file;
     recursos_file.open(path, std::ifstream::in);
     if (! recursos_file.good()) {
@@ -50,7 +50,7 @@ int Orchestrator::procesarArchivoRecursos(const std::string& path) {
     return OK;
 }
 
-int Orchestrator::parsearLineaTrabajadores(const std::string& linea) {
+const int Orchestrator::parsearLineaTrabajadores(const std::string& linea) {
     std::string trabajadores[NUM_TRABAJADORES] =
             {"Agricultores", "Leniadores", "Mineros",
              "Cocineros", "Carpinteros", "Armeros"};
@@ -83,7 +83,7 @@ int Orchestrator::parsearLineaTrabajadores(const std::string& linea) {
     return OK;
 }
 
-int Orchestrator::parsearCaracterRecursos(const char& c) {
+const int Orchestrator::parsearCaracterRecursos(const char& c) {
     char recursos[NUM_RECURSOS] = {'C', 'H', 'M', 'T'};
 
     bool recurso_ok = false;
@@ -103,7 +103,8 @@ int Orchestrator::parsearCaracterRecursos(const char& c) {
     return OK;
 }
 
-void Orchestrator::crearTrabajadores(const std::string& trabajador, int cant) {
+void Orchestrator::crearTrabajadores(const std::string& trabajador,
+                                     const int& cant) {
     int i;
 
     if (trabajador == "Agricultores") {
