@@ -1,16 +1,21 @@
+#include <mutex>
 #include <vector>
 #include <map>
 #include "AcumuladorPuntos.h"
+#include "Lock.h"
 
 AcumuladorPuntos::AcumuladorPuntos() {
     puntos = 0;
 }
 
 void AcumuladorPuntos::sumarPuntos(std::vector<Recurso> recursos) {
+    Lock lock(mutex);
     puntos += calcularPuntos(recursos);
 }
 
 int AcumuladorPuntos::calcularPuntos(std::vector<Recurso> recursos) {
+    Lock lock(mutex);
+
     std::map<char, int> cantidades = {{'C', 0}, {'H', 0}, {'M', 0}, {'T', 0}};
     int puntos_nuevos;
 

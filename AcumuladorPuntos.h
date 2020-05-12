@@ -1,10 +1,12 @@
 #ifndef ACUMULADORPUNTOS_H
 #define ACUMULADORPUNTOS_H
 
+#include <mutex>
 #include <vector>
 #include "Recurso.h"
 
 class AcumuladorPuntos {
+    std::mutex mutex;
     int puntos;
     int calcularPuntos(std::vector<Recurso> recursos);
 public:
