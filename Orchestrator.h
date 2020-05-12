@@ -20,6 +20,9 @@ class Orchestrator {
     void crearTrabajadores(const std::string& trabajador, int cant);
     void encolarRecurso(const char& c);
 public:
+    Orchestrator() {}
+    Orchestrator(const Orchestrator& other) = delete;
+    Orchestrator& operator=(const Orchestrator& other) = delete;
     int procesarArchivoTrabajadores(const std::string& path);
     int procesarArchivoRecursos(const std::string& path);
     void iniciarTrabajadores();

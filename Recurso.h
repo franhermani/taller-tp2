@@ -4,7 +4,7 @@
 class Recurso {
     char tipo;
 public:
-    explicit Recurso(char tipo);
+    explicit Recurso(char tipo) : tipo(tipo) {}
     const char obtenerTipo();
 };
 
