@@ -12,7 +12,7 @@ void AcumuladorPuntos::sumarPuntos(std::vector<Recurso> recursos) {
     puntos += calcularPuntos(recursos);
 }
 
-int AcumuladorPuntos::calcularPuntos(std::vector<Recurso> recursos) {
+const int AcumuladorPuntos::calcularPuntos(std::vector<Recurso> recursos) {
     std::unique_lock<std::mutex> lock(mutex);
     std::map<char, int> cantidades = {{'C', 0}, {'H', 0}, {'M', 0}, {'T', 0}};
     int puntos_nuevos;
@@ -33,7 +33,7 @@ int AcumuladorPuntos::calcularPuntos(std::vector<Recurso> recursos) {
     return puntos_nuevos;
 }
 
-int AcumuladorPuntos::obtenerPuntos() {
+const int AcumuladorPuntos::obtenerPuntos() {
     std::unique_lock<std::mutex> lock(mutex);
     return puntos;
 }
