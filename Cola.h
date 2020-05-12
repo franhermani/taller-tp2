@@ -18,7 +18,6 @@ public:
     void encolar(Recurso recurso);
     Recurso desencolar();
     const int obtenerLargo();
-    const bool estaVacia();
     void cerrar();
 };
 

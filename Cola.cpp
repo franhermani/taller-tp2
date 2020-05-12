@@ -5,7 +5,6 @@
 
 void Cola::encolar(Recurso recurso) {
     std::unique_lock<std::mutex> lock(mutex);
-
     recursos.push(std::move(recurso));
     cv.notify_all();
 }
@@ -13,7 +12,7 @@ void Cola::encolar(Recurso recurso) {
 Recurso Cola::desencolar() {
     std::unique_lock<std::mutex> lock(mutex);
 
-    while (estaVacia()) {
+    while (recursos.empty()) {
         if (esta_cerrada) throw ColaCerradaException();
         cv.wait(lock);
     }
@@ -25,11 +24,6 @@ Recurso Cola::desencolar() {
 const int Cola::obtenerLargo() {
     std::unique_lock<std::mutex> lock(mutex);
     return recursos.size();
-}
-
-const bool Cola::estaVacia() {
-    std::unique_lock<std::mutex> lock(mutex);
-    return recursos.empty();
 }
 
 void Cola::cerrar() {

@@ -5,7 +5,6 @@
 #define SLEEP_TIME 50
 
 void Recolector::run() {
-    /*
     while (true) {
         try {
             Recurso recurso = cola.desencolar();
@@ -16,5 +15,4 @@ void Recolector::run() {
             break;
         }
     }
-     */
 }
