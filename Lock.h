@@ -7,10 +7,10 @@ class Lock {
     std::mutex& mutex;
 public:
     explicit Lock(std::mutex &mutex) : mutex(mutex) {
-        this->mutex.lock();
+        mutex.lock();
     }
     ~Lock() {
-        this->mutex.unlock();
+        mutex.unlock();
     }
     Lock(const Lock&) = delete;
     Lock& operator=(const Lock&) = delete;

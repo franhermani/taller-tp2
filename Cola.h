@@ -10,14 +10,16 @@ class Cola {
     std::mutex mutex;
     std::condition_variable cv;
     std::queue<Recurso> recursos;
+    bool esta_cerrada;
 public:
-    Cola() {}
+    Cola() : esta_cerrada(false) {}
     Cola(const Cola& other) = delete;
     Cola& operator=(const Cola& other) = delete;
     void encolar(Recurso recurso);
     Recurso desencolar();
     const bool estaVacia();
     const int obtenerLargo();
+    void cerrar();
 };
 
 #endif // COLA_H
