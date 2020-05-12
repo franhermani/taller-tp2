@@ -11,6 +11,9 @@ class Cola {
     std::condition_variable cv;
     std::queue<Recurso> recursos;
 public:
+    Cola() {}
+    Cola(const Cola& other) = delete;
+    Cola& operator=(const Cola& other) = delete;
     void encolar(Recurso recurso);
     Recurso desencolar();
     const bool estaVacia();
