@@ -13,10 +13,7 @@ public:
     Inventario() {}
     Inventario(const Inventario& other) = delete;
     Inventario& operator=(const Inventario& other) = delete;
-    void depositarCarbon(Recurso recurso);
-    void depositarHierro(Recurso recurso);
-    void depositarMadera(Recurso recurso);
-    void depositarTrigo(Recurso recurso);
+    void depositarRecurso(Recurso recurso);
     Recurso consumirCarbon();
     Recurso consumirHierro();
     Recurso consumirMadera();

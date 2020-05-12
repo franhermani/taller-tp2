@@ -9,8 +9,7 @@ void Recolector::run() {
         try {
             Recurso recurso = cola.desencolar();
             usleep(SLEEP_TIME);
-            // TODO: cambiar este depositar por algo generico
-            inventario.depositarTrigo(recurso);
+            inventario.depositarRecurso(recurso);
         } catch(ColaCerradaException) {
             break;
         }

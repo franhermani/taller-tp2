@@ -1,19 +1,16 @@
 #include "Inventario.h"
 
-void Inventario::depositarCarbon(Recurso recurso) {
-    colaCarbon.encolar(recurso);
-}
-
-void Inventario::depositarHierro(Recurso recurso) {
-    colaHierro.encolar(recurso);
-}
-
-void Inventario::depositarMadera(Recurso recurso) {
-    colaMadera.encolar(recurso);
-}
-
-void Inventario::depositarTrigo(Recurso recurso) {
-    colaTrigo.encolar(recurso);
+void Inventario::depositarRecurso(Recurso recurso) {
+    // TODO: hacer esto polimorfico
+    if (recurso.obtenerTipo() == 'C') {
+        colaCarbon.encolar(recurso);
+    } else if (recurso.obtenerTipo() == 'H') {
+        colaHierro.encolar(recurso);
+    } else if (recurso.obtenerTipo() == 'M') {
+        colaMadera.encolar(recurso);
+    } else if (recurso.obtenerTipo() == 'T') {
+        colaTrigo.encolar(recurso);
+    }
 }
 
 Recurso Inventario::consumirCarbon() {
