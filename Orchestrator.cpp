@@ -4,14 +4,27 @@
 #include "Orchestrator.h"
 #include "Recurso.h"
 #include "Recolector.h"
-#include "Carpintero.h"
-#include "Cocinero.h"
-#include "Armero.h"
+#include "Productor.h"
 
 #define OK 0
 #define ERROR 1
 #define NUM_RECURSOS 4
 #define NUM_TRABAJADORES 6
+
+#define CANT_C_COCINERO 1
+#define CANT_H_COCINERO 0
+#define CANT_M_COCINERO 0
+#define CANT_T_COCINERO 2
+
+#define CANT_C_CARPINTERO 0
+#define CANT_H_CARPINTERO 1
+#define CANT_M_CARPINTERO 3
+#define CANT_T_CARPINTERO 0
+
+#define CANT_C_ARMERO 2
+#define CANT_H_ARMERO 2
+#define CANT_M_ARMERO 0
+#define CANT_T_ARMERO 0
 
 Orchestrator::Orchestrator() {}
 
@@ -113,26 +126,37 @@ void Orchestrator::crearTrabajadores(const std::string& trabajador,
         for (i = 0; i < cant; i ++)
             trabajadores.push_back(
                     new Recolector(colaAgricultores, inventario));
+
     } else if (trabajador == "Leniadores") {
         for (i = 0; i < cant; i ++)
             trabajadores.push_back(
                     new Recolector(colaLeniadores, inventario));
+
     } else if (trabajador == "Mineros") {
         for (i = 0; i < cant; i ++)
             trabajadores.push_back(
                     new Recolector(colaMineros, inventario));
+
     } else if (trabajador == "Cocineros") {
         for (i = 0; i < cant; i ++)
             trabajadores.push_back(
-                    new Cocinero(inventario, acumuladorPuntos));
+                    new Productor(inventario, acumuladorPuntos,
+                                  CANT_C_COCINERO, CANT_H_COCINERO,
+                                  CANT_M_COCINERO, CANT_T_COCINERO));
+
     } else if (trabajador == "Carpinteros") {
         for (i = 0; i < cant; i ++)
             trabajadores.push_back(
-                    new Carpintero(inventario, acumuladorPuntos));
+                    new Productor(inventario, acumuladorPuntos,
+                                  CANT_C_CARPINTERO, CANT_H_CARPINTERO,
+                                  CANT_M_CARPINTERO, CANT_T_CARPINTERO));
+
     } else if (trabajador == "Armeros") {
         for (i = 0; i < cant; i ++)
             trabajadores.push_back(
-                    new Armero(inventario, acumuladorPuntos));
+                    new Productor(inventario, acumuladorPuntos,
+                                  CANT_C_ARMERO, CANT_H_ARMERO,
+                                  CANT_M_ARMERO, CANT_T_ARMERO));
     }
 }
 

@@ -20,7 +20,7 @@ class Inventario {
     bool armarConjunto(std::vector<Recurso>& recursos, const int cant_carbon,
             const int cant_hierro, const int cant_madera,
             const int cant_trigo);
-    
+
 public:
     // Constructor
     Inventario();
