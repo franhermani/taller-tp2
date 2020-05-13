@@ -18,8 +18,8 @@ public:
     // Recibe una referencia del inventario y del acumulador de puntos
     // Tambien recibe las cantidades que precisa de cada recurso
     Productor(Inventario& inventario, AcumuladorPuntos& acumulador,
-            const int cant_carbon, const int cant_hierro,
-            const int cant_madera, const int cant_trigo);
+              const int cant_carbon, const int cant_hierro,
+              const int cant_madera, const int cant_trigo);
 
     // Constructor y asignacion por copia deshabilitados
     Productor(const Productor& other) = delete;

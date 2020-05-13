@@ -1,4 +1,9 @@
+#include <vector>
+#include <unistd.h>
 #include "Productor.h"
+#include "ColaCerradaException.h"
+
+#define SLEEP_TIME 60
 
 Productor::Productor(Inventario &inventario, AcumuladorPuntos &acumulador,
         const int cant_carbon, const int cant_hierro,
@@ -8,8 +13,16 @@ Productor::Productor(Inventario &inventario, AcumuladorPuntos &acumulador,
         cant_madera(cant_madera), cant_trigo(cant_trigo) {}
 
 void Productor::run() {
-//    TODO: recibe el inventario y el acumulador de puntos
-//    while (true) {
-//
-//    }
+    /*
+    while (true) {
+        try {
+            std::vector<Recurso> recursos = inventario.consumirRecursos(
+                    cant_carbon, cant_hierro, cant_madera, cant_trigo);
+            usleep(SLEEP_TIME);
+            acumulador.sumarPuntos(recursos);
+        } catch(ColaCerradaException) {
+            break;
+        }
+    }
+    */
 }

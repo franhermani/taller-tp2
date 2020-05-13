@@ -2,7 +2,6 @@
 #include <vector>
 #include "Inventario.h"
 #include "ColaCerradaException.h"
-#include "ColaVaciaException.h"
 
 Inventario::Inventario() : esta_cerrado(false) {}
 
@@ -39,27 +38,27 @@ std::vector<Recurso> Inventario::consumirRecursos(const int cant_carbon,
 bool Inventario::armarConjunto(std::vector<Recurso>& recursos,
         const int cant_carbon, const int cant_hierro, const int cant_madera,
         const int cant_trigo) {
-    try {
-        int i;
-        for (i = 0; i < cant_carbon; i ++) {
-            Recurso carbon = colaCarbon.desencolar();
-            recursos.push_back(carbon);
-        }
-        for (i = 0; i < cant_hierro; i ++) {
-            Recurso hierro = colaHierro.desencolar();
-            recursos.push_back(hierro);
-        }
-        for (i = 0; i < cant_madera; i ++) {
-            Recurso madera = colaMadera.desencolar();
-            recursos.push_back(madera);
-        }
-        for (i = 0; i < cant_trigo; i ++) {
-            Recurso trigo = colaTrigo.desencolar();
-            recursos.push_back(trigo);
-        }
-    } catch(ColaVaciaException) {
-        recursos.clear();
-        return false;
+    if (cant_carbon > colaCarbon.obtenerLargo() ||
+        cant_hierro > colaHierro.obtenerLargo() ||
+        cant_madera > colaMadera.obtenerLargo() ||
+        cant_trigo > colaTrigo.obtenerLargo()) return false;
+
+    int i;
+    for (i = 0; i < cant_carbon; i ++) {
+        Recurso carbon = colaCarbon.desencolar();
+        recursos.push_back(carbon);
+    }
+    for (i = 0; i < cant_hierro; i ++) {
+        Recurso hierro = colaHierro.desencolar();
+        recursos.push_back(hierro);
+    }
+    for (i = 0; i < cant_madera; i ++) {
+        Recurso madera = colaMadera.desencolar();
+        recursos.push_back(madera);
+    }
+    for (i = 0; i < cant_trigo; i ++) {
+        Recurso trigo = colaTrigo.desencolar();
+        recursos.push_back(trigo);
     }
     return true;
 }
