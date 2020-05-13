@@ -4,7 +4,11 @@
 class Recurso {
     char tipo;
 public:
+    // Constructor
+    // Recibe una referencia del tipo de recurso
     explicit Recurso(const char& tipo) : tipo(tipo) {}
+
+    // Devuelve el tipo del recurso
     const char obtenerTipo();
 };
 
