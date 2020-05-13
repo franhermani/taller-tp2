@@ -12,7 +12,7 @@ class Inventario {
 
 public:
     // Constructor
-    Inventario() {}
+    Inventario();
 
     // Constructor y asignacion por copia deshabilitados
     Inventario(const Inventario& other) = delete;

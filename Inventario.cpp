@@ -1,5 +1,7 @@
 #include "Inventario.h"
 
+Inventario::Inventario() {}
+
 void Inventario::depositarRecurso(Recurso recurso) {
     // TODO: hacer esto polimorfico
     if (recurso.obtenerTipo() == 'C') {

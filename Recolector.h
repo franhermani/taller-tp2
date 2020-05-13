@@ -11,8 +11,7 @@ class Recolector: public Trabajador {
 public:
     // Constructor
     // Recibe una referencia de la cola y del inventario
-    Recolector(Cola& cola, Inventario& inventario) :
-    cola(cola), inventario(inventario) {}
+    Recolector(Cola& cola, Inventario& inventario);
 
     // Constructor y asignacion por copia deshabilitados
     Recolector(const Recolector& other) = delete;

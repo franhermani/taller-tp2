@@ -13,6 +13,8 @@
 #define NUM_RECURSOS 4
 #define NUM_TRABAJADORES 6
 
+Orchestrator::Orchestrator() {}
+
 const int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
     std::ifstream trabajadores_file;
     trabajadores_file.open(path, std::ifstream::in);

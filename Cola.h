@@ -15,7 +15,7 @@ class Cola {
 public:
     // Constructor
     // Inicialmente la cola no esta cerrada
-    Cola() : esta_cerrada(false) {}
+    Cola();
 
     // Constructor y asignacion por copia deshabilitados
     Cola(const Cola& other) = delete;

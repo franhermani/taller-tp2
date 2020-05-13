@@ -3,6 +3,8 @@
 #include "Cola.h"
 #include "ColaCerradaException.h"
 
+Cola::Cola() : esta_cerrada(false) {}
+
 void Cola::encolar(Recurso recurso) {
     std::unique_lock<std::mutex> lock(mutex);
     recursos.push(std::move(recurso));

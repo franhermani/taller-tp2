@@ -33,7 +33,7 @@ class Orchestrator {
 
 public:
     // Constructor
-    Orchestrator() {}
+    Orchestrator();
 
     // Constructor y asignacion por copia deshabilitados
     Orchestrator(const Orchestrator& other) = delete;

@@ -4,6 +4,9 @@
 
 #define SLEEP_TIME 50
 
+Recolector::Recolector(Cola& cola, Inventario& inventario) :
+cola(cola), inventario(inventario) {}
+
 void Recolector::run() {
     while (true) {
         try {
