@@ -124,36 +124,36 @@ void Orchestrator::crearTrabajadores(const std::string& trabajador,
 
     if (trabajador == "Agricultores") {
         for (i = 0; i < cant; i ++)
-            trabajadores.push_back(
+            recolectores.push_back(
                     new Recolector(colaAgricultores, inventario));
 
     } else if (trabajador == "Leniadores") {
         for (i = 0; i < cant; i ++)
-            trabajadores.push_back(
+            recolectores.push_back(
                     new Recolector(colaLeniadores, inventario));
 
     } else if (trabajador == "Mineros") {
         for (i = 0; i < cant; i ++)
-            trabajadores.push_back(
+            recolectores.push_back(
                     new Recolector(colaMineros, inventario));
 
     } else if (trabajador == "Cocineros") {
         for (i = 0; i < cant; i ++)
-            trabajadores.push_back(
+            productores.push_back(
                     new Productor(inventario, acumuladorPuntos,
                                   CANT_C_COCINERO, CANT_H_COCINERO,
                                   CANT_M_COCINERO, CANT_T_COCINERO));
 
     } else if (trabajador == "Carpinteros") {
         for (i = 0; i < cant; i ++)
-            trabajadores.push_back(
+            productores.push_back(
                     new Productor(inventario, acumuladorPuntos,
                                   CANT_C_CARPINTERO, CANT_H_CARPINTERO,
                                   CANT_M_CARPINTERO, CANT_T_CARPINTERO));
 
     } else if (trabajador == "Armeros") {
         for (i = 0; i < cant; i ++)
-            trabajadores.push_back(
+            productores.push_back(
                     new Productor(inventario, acumuladorPuntos,
                                   CANT_C_ARMERO, CANT_H_ARMERO,
                                   CANT_M_ARMERO, CANT_T_ARMERO));
@@ -181,15 +181,25 @@ void Orchestrator::encolarRecurso(const char &c) {
 
 void Orchestrator::iniciarTrabajadores() {
     size_t i;
-    for (i = 0; i < trabajadores.size(); i ++)
-        trabajadores[i]->start();
+    for (i = 0; i < recolectores.size(); i ++)
+        recolectores[i]->start();
+
+    for (i = 0; i < productores.size(); i ++)
+        productores[i]->start();
 }
 
 void Orchestrator::finalizarTrabajadores() {
     size_t i;
-    for (i = 0; i < trabajadores.size(); i ++) {
-        trabajadores[i]->join();
-        delete trabajadores[i];
+    for (i = 0; i < recolectores.size(); i ++) {
+        recolectores[i]->join();
+        delete recolectores[i];
+    }
+
+    inventario.cerrar();
+
+    for (i = 0; i < productores.size(); i ++) {
+        productores[i]->join();
+        delete productores[i];
     }
 }
 

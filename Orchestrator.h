@@ -4,7 +4,8 @@
 #include <string>
 #include <vector>
 #include "Cola.h"
-#include "Trabajador.h"
+#include "Recolector.h"
+#include "Productor.h"
 #include "Inventario.h"
 #include "AcumuladorPuntos.h"
 
@@ -12,7 +13,8 @@ class Orchestrator {
     Cola colaAgricultores;
     Cola colaLeniadores;
     Cola colaMineros;
-    std::vector<Trabajador*> trabajadores;
+    std::vector<Recolector*> recolectores;
+    std::vector<Productor*> productores;
     Inventario inventario;
     AcumuladorPuntos acumuladorPuntos;
 
