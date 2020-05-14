@@ -26,7 +26,7 @@ std::vector<Recurso> Inventario::consumirRecursos(const int cant_carbon,
     std::unique_lock<std::mutex> lock(mutex);
     std::vector<Recurso> recursos;
 
-    while (armarConjunto(recursos, cant_carbon, cant_hierro, cant_madera,
+    while (! armarConjunto(recursos, cant_carbon, cant_hierro, cant_madera,
             cant_trigo)) {
         // TODO: tirar otra exception
         if (esta_cerrado) throw ColaCerradaException();
