@@ -1,7 +1,7 @@
 #include <mutex>
 #include <vector>
 #include "Inventario.h"
-#include "ColaCerradaException.h"
+#include "InventarioCerradoException.h"
 
 Inventario::Inventario() : esta_cerrado(false) {}
 
@@ -28,8 +28,7 @@ std::vector<Recurso> Inventario::consumirRecursos(const int cant_carbon,
 
     while (! armarConjunto(recursos, cant_carbon, cant_hierro, cant_madera,
             cant_trigo)) {
-        // TODO: tirar otra exception
-        if (esta_cerrado) throw ColaCerradaException();
+        if (esta_cerrado) throw InventarioCerradoException();
         cv.wait(lock);
     }
     return recursos;

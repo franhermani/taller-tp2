@@ -1,7 +1,7 @@
 #include <vector>
 #include <unistd.h>
 #include "Productor.h"
-#include "ColaCerradaException.h"
+#include "InventarioCerradoException.h"
 
 #define SLEEP_TIME 60
 
@@ -19,7 +19,7 @@ void Productor::run() {
                     cant_carbon, cant_hierro, cant_madera, cant_trigo);
             usleep(SLEEP_TIME);
             acumulador.sumarPuntos(recursos);
-        } catch(ColaCerradaException) {
+        } catch(InventarioCerradoException) {
             break;
         }
     }

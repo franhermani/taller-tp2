@@ -16,7 +16,10 @@ class Inventario {
     Cola colaTrigo;
     bool esta_cerrado;
 
-    // TODO
+    // Recibe un vector de recursos vacío y lo llena desencolando de las colas
+    // las cantidades necesarias de cada recurso
+    // Devuelve true en caso de tener suficiente cantidad de cada recurso,
+    // false en caso contrario
     bool armarConjunto(std::vector<Recurso>& recursos, const int cant_carbon,
             const int cant_hierro, const int cant_madera,
             const int cant_trigo);
@@ -32,7 +35,10 @@ public:
     // Deposita un recurso en el inventario
     void depositarRecurso(Recurso recurso);
 
-    // TODO
+    // Consume las cantidades recibidas de cada recurso
+    // En caso de no haber suficientes recursos, libera el lock
+    // para que otro thread pueda utilizarlo
+    // En caso de que el inventario esté cerrado, devuelve una excepción
     std::vector<Recurso> consumirRecursos(const int cant_carbon,
                                           const int cant_hierro,
                                           const int cant_madera,

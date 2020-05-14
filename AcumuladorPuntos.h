@@ -1,5 +1,5 @@
-#ifndef ACUMULADORPUNTOS_H
-#define ACUMULADORPUNTOS_H
+#ifndef ACUMULADOR_PUNTOS_H
+#define ACUMULADOR_PUNTOS_H
 
 #include <mutex>
 #include <vector>
@@ -27,4 +27,4 @@ public:
     const int obtenerPuntos();
 };
 
-#endif // ACUMULADORPUNTOS_H
+#endif // ACUMULADOR_PUNTOS_H
