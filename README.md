@@ -10,9 +10,8 @@ Link GitHub: https://github.com/franhermani/taller-tp2
 # Puntos de interés
 
 - Los recursos los paso por movimiento
-- Las colas, el inventario y el acumulador de puntos los creo en el heap
-  y los paso por referencia. A su vez, inhabilité los constructores y asignadores
-  por copia
+- Las colas, el inventario y el acumulador de puntos los paso por referencia.
+  A su vez, inhabilité los constructores y asignadores por copia en todas las clases
 
 
 # Aclaraciones
