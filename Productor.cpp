@@ -13,7 +13,6 @@ Productor::Productor(Inventario &inventario, AcumuladorPuntos &acumulador,
         cant_madera(cant_madera), cant_trigo(cant_trigo) {}
 
 void Productor::run() {
-    /*
     while (true) {
         try {
             std::vector<Recurso> recursos = inventario.consumirRecursos(
@@ -24,5 +23,4 @@ void Productor::run() {
             break;
         }
     }
-    */
 }
