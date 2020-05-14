@@ -26,9 +26,18 @@ class Orchestrator {
     // el recurso correspondiente
     const int parsearCaracterRecursos(const char& c);
 
-    // Crea 'cant' instancias de 'trabajador' y las agrega
-    // al vector de trabajadores
+    // Delega la creacion de trabajadores segun sean recolectores o productores
     void crearTrabajadores(const std::string& trabajador, const int& cant);
+
+    // Crea 'cant' instancias de un recolector con una referencia a 'cola'
+    // y al inventario y las agrega al vector de recolectores
+    void crearRecolectores(const int& cant, Cola& cola);
+
+    // Crea 'cant' instancias de un productor con las cantidades de recursos,
+    // con una referencia al inventario y al acumulador de puntos
+    // y las agrega al vector de productores
+    void crearProductores(const int& cant, int cant_carbon, int cant_hierro,
+                          int cant_madera, int cant_trigo);
 
     // Crea un recurso del tipo 'c' y lo agrega a la cola correspondiente
     void encolarRecurso(const char& c);

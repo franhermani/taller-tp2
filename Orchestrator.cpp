@@ -120,44 +120,38 @@ const int Orchestrator::parsearCaracterRecursos(const char& c) {
 
 void Orchestrator::crearTrabajadores(const std::string& trabajador,
                                      const int& cant) {
-    int i;
-
     if (trabajador == "Agricultores") {
-        for (i = 0; i < cant; i ++)
-            recolectores.push_back(
-                    new Recolector(colaAgricultores, inventario));
-
+        crearRecolectores(cant, colaAgricultores);
     } else if (trabajador == "Leniadores") {
-        for (i = 0; i < cant; i ++)
-            recolectores.push_back(
-                    new Recolector(colaLeniadores, inventario));
-
+        crearRecolectores(cant, colaLeniadores);
     } else if (trabajador == "Mineros") {
-        for (i = 0; i < cant; i ++)
-            recolectores.push_back(
-                    new Recolector(colaMineros, inventario));
-
+        crearRecolectores(cant, colaMineros);
     } else if (trabajador == "Cocineros") {
-        for (i = 0; i < cant; i ++)
-            productores.push_back(
-                    new Productor(inventario, acumuladorPuntos,
-                                  CANT_C_COCINERO, CANT_H_COCINERO,
-                                  CANT_M_COCINERO, CANT_T_COCINERO));
-
+        crearProductores(cant, CANT_C_COCINERO, CANT_H_COCINERO,
+                         CANT_M_COCINERO, CANT_T_COCINERO);
     } else if (trabajador == "Carpinteros") {
-        for (i = 0; i < cant; i ++)
-            productores.push_back(
-                    new Productor(inventario, acumuladorPuntos,
-                                  CANT_C_CARPINTERO, CANT_H_CARPINTERO,
-                                  CANT_M_CARPINTERO, CANT_T_CARPINTERO));
-
+        crearProductores(cant, CANT_C_CARPINTERO, CANT_H_CARPINTERO,
+                         CANT_M_CARPINTERO, CANT_T_CARPINTERO);
     } else if (trabajador == "Armeros") {
-        for (i = 0; i < cant; i ++)
-            productores.push_back(
-                    new Productor(inventario, acumuladorPuntos,
-                                  CANT_C_ARMERO, CANT_H_ARMERO,
-                                  CANT_M_ARMERO, CANT_T_ARMERO));
+        crearProductores(cant, CANT_C_ARMERO, CANT_H_ARMERO,
+                         CANT_M_ARMERO, CANT_T_ARMERO);
     }
+}
+
+void Orchestrator::crearRecolectores(const int& cant, Cola& cola) {
+    int i;
+    for (i = 0; i < cant; i ++)
+        recolectores.push_back(new Recolector(cola, inventario));
+}
+
+void Orchestrator::crearProductores(const int& cant, int cant_carbon,
+                                    int cant_hierro, int cant_madera,
+                                    int cant_trigo) {
+    int i;
+    for (i = 0; i < cant; i ++)
+        productores.push_back(new Productor(inventario, acumuladorPuntos,
+                              cant_carbon, cant_hierro, cant_madera,
+                              cant_trigo));
 }
 
 void Orchestrator::encolarRecurso(const char &c) {
