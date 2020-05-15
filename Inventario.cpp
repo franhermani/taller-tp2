@@ -1,5 +1,6 @@
 #include <mutex>
 #include <vector>
+#include "defines.h"
 #include "Inventario.h"
 #include "InventarioCerradoException.h"
 
@@ -9,13 +10,13 @@ void Inventario::depositarRecurso(Recurso recurso) {
     std::unique_lock<std::mutex> lock(mutex);
 
     // TODO: hacer esto polimorfico
-    if (recurso.obtenerTipo() == 'C') {
+    if (recurso.obtenerTipo() == CARBON) {
         colaCarbon.encolar(recurso);
-    } else if (recurso.obtenerTipo() == 'H') {
+    } else if (recurso.obtenerTipo() == HIERRO) {
         colaHierro.encolar(recurso);
-    } else if (recurso.obtenerTipo() == 'M') {
+    } else if (recurso.obtenerTipo() == MADERA) {
         colaMadera.encolar(recurso);
-    } else if (recurso.obtenerTipo() == 'T') {
+    } else if (recurso.obtenerTipo() == TRIGO) {
         colaTrigo.encolar(recurso);
     }
     cv.notify_all();

@@ -27,3 +27,7 @@
 #define CANT_H_ARMERO 2
 #define CANT_M_ARMERO 0
 #define CANT_T_ARMERO 0
+
+#define PUNTOS_COCINERO 5
+#define PUNTOS_CARPINTERO 2
+#define PUNTOS_ARMERO 3

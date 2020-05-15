@@ -1,6 +1,7 @@
 #include <mutex>
 #include <vector>
 #include <map>
+#include "defines.h"
 #include "AcumuladorPuntos.h"
 
 AcumuladorPuntos::AcumuladorPuntos() {
@@ -13,21 +14,23 @@ void AcumuladorPuntos::sumarPuntos(std::vector<Recurso> recursos) {
 }
 
 const int AcumuladorPuntos::calcularPuntos(std::vector<Recurso> recursos) {
-    std::map<char, int> cantidades = {{'C', 0}, {'H', 0}, {'M', 0}, {'T', 0}};
-    int puntos_nuevos;
+    std::map<char, int> cantidades = {{CARBON, 0}, {HIERRO, 0},
+                                      {MADERA, 0}, {TRIGO, 0}};
+    int puntos_nuevos = 0;
 
     size_t i;
     for (i = 0; i < recursos.size(); i ++)
         cantidades[recursos[i].obtenerTipo()] += 1;
 
-    if (cantidades['T'] == 2 && cantidades['C'] == 1) {
-        puntos_nuevos = 5;
-    } else if (cantidades['M'] == 3 && cantidades['H'] == 1) {
-        puntos_nuevos = 2;
-    } else if (cantidades['C'] == 2 && cantidades['H'] == 2) {
-        puntos_nuevos = 3;
-    } else {
-        puntos_nuevos = 0;
+    if (cantidades[TRIGO] == CANT_T_COCINERO &&
+        cantidades[CARBON] == CANT_C_COCINERO) {
+        puntos_nuevos = PUNTOS_COCINERO;
+    } else if (cantidades[MADERA] == CANT_M_CARPINTERO &&
+               cantidades[HIERRO] == CANT_H_CARPINTERO) {
+        puntos_nuevos = PUNTOS_CARPINTERO;
+    } else if (cantidades[CARBON] == CANT_C_ARMERO &&
+               cantidades[HIERRO] == CANT_H_ARMERO) {
+        puntos_nuevos = PUNTOS_ARMERO;
     }
     return puntos_nuevos;
 }
