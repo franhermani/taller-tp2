@@ -18,7 +18,7 @@ void Productor::run() {
             std::vector<Recurso> recursos = inventario.consumirRecursos(
                     cant_carbon, cant_hierro, cant_madera, cant_trigo);
             usleep(SLEEP_TIME);
-            acumulador.sumarPuntos(recursos);
+            acumulador.sumarPuntos(std::move(recursos));
         } catch(InventarioCerradoException) {
             break;
         }

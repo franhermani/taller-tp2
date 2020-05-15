@@ -12,7 +12,7 @@ void Recolector::run() {
         try {
             Recurso recurso = cola.desencolar();
             usleep(SLEEP_TIME);
-            inventario.depositarRecurso(recurso);
+            inventario.depositarRecurso(std::move(recurso));
         } catch(ColaCerradaException) {
             break;
         }
