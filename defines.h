@@ -1,12 +1,11 @@
-#define NUM_RECURSOS 4
-#define NUM_TRABAJADORES 6
-
 #define AGRICULTORES "Agricultores"
 #define LENIADORES "Leniadores"
 #define MINEROS "Mineros"
 #define COCINEROS "Cocineros"
 #define CARPINTEROS "Carpinteros"
 #define ARMEROS "Armeros"
+
+#define DELIM '='
 
 #define CARBON 'C'
 #define HIERRO 'H'

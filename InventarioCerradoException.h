@@ -5,7 +5,7 @@
 
 struct InventarioCerradoException : public std::exception {
     const char * what() const throw() {
-        return "El inventario se encuentra cerrado";
+        return "El inventario se encuentra cerrado\n";
     }
 };
 

@@ -5,7 +5,7 @@
 
 struct ColaCerradaException : public std::exception {
     const char * what() const throw() {
-        return "La cola se encuentra cerrada";
+        return "La cola se encuentra cerrada\n";
     }
 };
 

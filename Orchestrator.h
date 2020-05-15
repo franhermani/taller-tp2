@@ -24,7 +24,7 @@ class Orchestrator {
 
     // Parsea un caracter del archivo de recursos obteniendo
     // el recurso correspondiente
-    const int parsearCaracterRecursos(const char& c);
+    void parsearCaracterRecursos(const char& c);
 
     // Delega la creacion de trabajadores segun sean recolectores o productores
     void crearTrabajadores(const std::string& trabajador, const int& cant);
