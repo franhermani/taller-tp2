@@ -155,6 +155,6 @@ void Orchestrator::imprimirEstadisticas() {
     << "  - Madera: " << inventario.obtenerSobrantesMadera() << "\n"
     << "  - Carbon: " << inventario.obtenerSobrantesCarbon() << "\n"
     << "  - Hierro: " << inventario.obtenerSobrantesHierro() << "\n\n"
-    << "Puntos de beneficio acumulados: " << acumuladorPuntos.obtenerPuntos()
+    << "Puntos de Beneficio acumulados: " << acumuladorPuntos.obtenerPuntos()
     << "\n";
 }
