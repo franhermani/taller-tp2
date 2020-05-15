@@ -150,11 +150,11 @@ void Orchestrator::finalizarTrabajadores() {
 }
 
 void Orchestrator::imprimirEstadisticas() {
-    std::cout << "Recursos restantes:";
-    std::cout << "\n  - Trigo: " << inventario.obtenerSobrantesTrigo();
-    std::cout << "\n  - Madera: " << inventario.obtenerSobrantesMadera();
-    std::cout << "\n  - Carbon: " << inventario.obtenerSobrantesCarbon();
-    std::cout << "\n  - Hierro: " << inventario.obtenerSobrantesHierro();
-    std::cout << "\n\nPuntos de beneficio acumulados: "
-              << acumuladorPuntos.obtenerPuntos() << "\n";
+    std::cout << "Recursos restantes:\n"
+    << "  - Trigo: " << inventario.obtenerSobrantesTrigo() << "\n"
+    << "  - Madera: " << inventario.obtenerSobrantesMadera() << "\n"
+    << "  - Carbon: " << inventario.obtenerSobrantesCarbon() << "\n"
+    << "  - Hierro: " << inventario.obtenerSobrantesHierro() << "\n\n"
+    << "Puntos de beneficio acumulados: " << acumuladorPuntos.obtenerPuntos()
+    << "\n";
 }
