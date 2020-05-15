@@ -9,7 +9,7 @@ public:
     explicit Recurso(const char& tipo);
 
     // Devuelve el tipo del recurso
-    const char obtenerTipo();
+    const char obtenerTipo() const;
 };
 
 #endif // RECURSO_H

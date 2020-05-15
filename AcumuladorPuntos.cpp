@@ -8,12 +8,13 @@ AcumuladorPuntos::AcumuladorPuntos() {
     puntos = 0;
 }
 
-void AcumuladorPuntos::sumarPuntos(std::vector<Recurso> recursos) {
+void AcumuladorPuntos::sumarPuntos(const std::vector<Recurso> recursos) {
     std::unique_lock<std::mutex> lock(mutex);
     puntos += calcularPuntos(recursos);
 }
 
-const int AcumuladorPuntos::calcularPuntos(std::vector<Recurso> recursos) {
+const int AcumuladorPuntos::calcularPuntos(
+        const std::vector<Recurso> recursos) const {
     std::map<char, int> cantidades = {{CARBON, 0}, {HIERRO, 0},
                                       {MADERA, 0}, {TRIGO, 0}};
     int puntos_nuevos = 0;

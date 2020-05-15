@@ -2,6 +2,6 @@
 
 Recurso::Recurso(const char& tipo) : tipo(tipo) {}
 
-const char Recurso::obtenerTipo() {
+const char Recurso::obtenerTipo() const {
     return tipo;
 }
