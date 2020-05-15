@@ -20,9 +20,9 @@ class Inventario {
     // las cantidades necesarias de cada recurso
     // Devuelve true en caso de tener suficiente cantidad de cada recurso,
     // false en caso contrario
-    bool armarConjunto(std::vector<Recurso>& recursos, const int cant_carbon,
-            const int cant_hierro, const int cant_madera,
-            const int cant_trigo);
+    const bool armarConjunto(std::vector<Recurso>& recursos,
+            const int cant_carbon, const int cant_hierro,
+            const int cant_madera, const int cant_trigo);
 
 public:
     // Constructor
@@ -39,7 +39,7 @@ public:
     // En caso de no haber suficientes recursos, libera el lock
     // para que otro thread pueda utilizarlo
     // En caso de que el inventario esté cerrado, devuelve una excepción
-    std::vector<Recurso> consumirRecursos(const int cant_carbon,
+    const std::vector<Recurso> consumirRecursos(const int cant_carbon,
                                           const int cant_hierro,
                                           const int cant_madera,
                                           const int cant_trigo);

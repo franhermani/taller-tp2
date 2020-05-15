@@ -22,7 +22,7 @@ void Inventario::depositarRecurso(Recurso recurso) {
     cv.notify_all();
 }
 
-std::vector<Recurso> Inventario::consumirRecursos(const int cant_carbon,
+const std::vector<Recurso> Inventario::consumirRecursos(const int cant_carbon,
         const int cant_hierro, const int cant_madera, const int cant_trigo) {
     std::unique_lock<std::mutex> lock(mutex);
     std::vector<Recurso> recursos;
@@ -35,7 +35,7 @@ std::vector<Recurso> Inventario::consumirRecursos(const int cant_carbon,
     return recursos;
 }
 
-bool Inventario::armarConjunto(std::vector<Recurso>& recursos,
+const bool Inventario::armarConjunto(std::vector<Recurso>& recursos,
         const int cant_carbon, const int cant_hierro, const int cant_madera,
         const int cant_trigo) {
     if (cant_carbon > colaCarbon.obtenerLargo() ||
