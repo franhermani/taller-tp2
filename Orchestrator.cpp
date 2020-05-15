@@ -51,8 +51,8 @@ const int Orchestrator::procesarArchivoRecursos(const std::string& path) {
 
 const int Orchestrator::parsearLineaTrabajadores(const std::string& linea) {
     std::string trabajadores[NUM_TRABAJADORES] =
-            {"Agricultores", "Leniadores", "Mineros",
-             "Cocineros", "Carpinteros", "Armeros"};
+            {AGRICULTORES, LENIADORES, MINEROS,
+             COCINEROS, CARPINTEROS, ARMEROS};
 
     std::string delimiter = "=",
                 trabajador = linea.substr(0, linea.find(delimiter)),
@@ -104,19 +104,19 @@ const int Orchestrator::parsearCaracterRecursos(const char& c) {
 
 void Orchestrator::crearTrabajadores(const std::string& trabajador,
                                      const int& cant) {
-    if (trabajador == "Agricultores") {
+    if (trabajador == AGRICULTORES) {
         crearRecolectores(cant, colaAgricultores);
-    } else if (trabajador == "Leniadores") {
+    } else if (trabajador == LENIADORES) {
         crearRecolectores(cant, colaLeniadores);
-    } else if (trabajador == "Mineros") {
+    } else if (trabajador == MINEROS) {
         crearRecolectores(cant, colaMineros);
-    } else if (trabajador == "Cocineros") {
+    } else if (trabajador == COCINEROS) {
         crearProductores(cant, CANT_C_COCINERO, CANT_H_COCINERO,
                          CANT_M_COCINERO, CANT_T_COCINERO);
-    } else if (trabajador == "Carpinteros") {
+    } else if (trabajador == CARPINTEROS) {
         crearProductores(cant, CANT_C_CARPINTERO, CANT_H_CARPINTERO,
                          CANT_M_CARPINTERO, CANT_T_CARPINTERO);
-    } else if (trabajador == "Armeros") {
+    } else if (trabajador == ARMEROS) {
         crearProductores(cant, CANT_C_ARMERO, CANT_H_ARMERO,
                          CANT_M_ARMERO, CANT_T_ARMERO);
     }
