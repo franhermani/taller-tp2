@@ -36,10 +36,10 @@ const int Orchestrator::procesarArchivoRecursos(const std::string& path) {
         std::cout << "Error al abrir el archivo de materias primas\n";
         return ERROR;
     }
-    char c;
-    while (recursos_file.get(c)) {
-        if (c == '\n') continue;
-        if (parsearCaracterRecursos(c) == ERROR) return ERROR;
+    std::string linea;
+    while (getline(recursos_file, linea)) {
+        for (char& c : linea)
+            if (parsearCaracterRecursos(c) == ERROR) return ERROR;
     }
     recursos_file.close();
     colaAgricultores.cerrar();
