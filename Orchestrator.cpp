@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "defines.h"
 #include "Orchestrator.h"
 #include "Recurso.h"
 #include "Recolector.h"
@@ -8,23 +9,6 @@
 
 #define OK 0
 #define ERROR 1
-#define NUM_RECURSOS 4
-#define NUM_TRABAJADORES 6
-
-#define CANT_C_COCINERO 1
-#define CANT_H_COCINERO 0
-#define CANT_M_COCINERO 0
-#define CANT_T_COCINERO 2
-
-#define CANT_C_CARPINTERO 0
-#define CANT_H_CARPINTERO 1
-#define CANT_M_CARPINTERO 3
-#define CANT_T_CARPINTERO 0
-
-#define CANT_C_ARMERO 2
-#define CANT_H_ARMERO 2
-#define CANT_M_ARMERO 0
-#define CANT_T_ARMERO 0
 
 Orchestrator::Orchestrator() {}
 
@@ -99,7 +83,7 @@ const int Orchestrator::parsearLineaTrabajadores(const std::string& linea) {
 }
 
 const int Orchestrator::parsearCaracterRecursos(const char& c) {
-    char recursos[NUM_RECURSOS] = {'C', 'H', 'M', 'T'};
+    char recursos[NUM_RECURSOS] = {CARBON, HIERRO, MADERA, TRIGO};
 
     bool recurso_ok = false;
     int i;
@@ -157,19 +141,12 @@ void Orchestrator::crearProductores(const int& cant, int cant_carbon,
 void Orchestrator::encolarRecurso(const char &c) {
     Recurso recurso(c);
 
-    switch (c) {
-        case 'C':
-            colaMineros.encolar(std::move(recurso));
-            break;
-        case 'H':
-            colaMineros.encolar(std::move(recurso));
-            break;
-        case 'M':
-            colaLeniadores.encolar(std::move(recurso));
-            break;
-        case 'T':
-            colaAgricultores.encolar(std::move(recurso));
-            break;
+    if (c == CARBON || c == HIERRO) {
+        colaMineros.encolar(std::move(recurso));
+    } else if (c == MADERA) {
+        colaLeniadores.encolar(std::move(recurso));
+    } else if (c == TRIGO) {
+        colaAgricultores.encolar(std::move(recurso));
     }
 }
 
@@ -188,7 +165,6 @@ void Orchestrator::finalizarTrabajadores() {
         recolectores[i]->join();
         delete recolectores[i];
     }
-
     inventario.cerrar();
 
     for (i = 0; i < productores.size(); i ++) {
