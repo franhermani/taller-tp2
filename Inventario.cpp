@@ -9,7 +9,6 @@ Inventario::Inventario() : esta_cerrado(false) {}
 void Inventario::depositarRecurso(Recurso recurso) {
     std::unique_lock<std::mutex> lock(mutex);
 
-    // TODO: hacer esto polimorfico
     if (recurso.obtenerTipo() == CARBON) {
         colaCarbon.encolar(recurso);
     } else if (recurso.obtenerTipo() == HIERRO) {
@@ -28,7 +27,7 @@ const std::vector<Recurso> Inventario::consumirRecursos(const int cant_carbon,
     std::vector<Recurso> recursos;
 
     while (! armarConjunto(recursos, cant_carbon, cant_hierro, cant_madera,
-            cant_trigo)) {
+                           cant_trigo)) {
         if (esta_cerrado) throw InventarioCerradoException();
         cv.wait(lock);
     }
@@ -44,22 +43,15 @@ const bool Inventario::armarConjunto(std::vector<Recurso>& recursos,
         cant_trigo > colaTrigo.obtenerLargo()) return false;
 
     int i;
-    for (i = 0; i < cant_carbon; i ++) {
-        Recurso carbon = colaCarbon.desencolar();
-        recursos.push_back(carbon);
-    }
-    for (i = 0; i < cant_hierro; i ++) {
-        Recurso hierro = colaHierro.desencolar();
-        recursos.push_back(hierro);
-    }
-    for (i = 0; i < cant_madera; i ++) {
-        Recurso madera = colaMadera.desencolar();
-        recursos.push_back(madera);
-    }
-    for (i = 0; i < cant_trigo; i ++) {
-        Recurso trigo = colaTrigo.desencolar();
-        recursos.push_back(trigo);
-    }
+    for (i = 0; i < cant_carbon; i ++)
+        recursos.push_back(colaCarbon.desencolar());
+    for (i = 0; i < cant_hierro; i ++)
+        recursos.push_back(colaHierro.desencolar());
+    for (i = 0; i < cant_madera; i ++)
+        recursos.push_back(colaMadera.desencolar());
+    for (i = 0; i < cant_trigo; i ++)
+        recursos.push_back(colaTrigo.desencolar());
+
     return true;
 }
 
