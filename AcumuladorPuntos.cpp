@@ -13,12 +13,11 @@ void AcumuladorPuntos::sumarPuntos(const std::vector<Recurso> recursos) {
     puntos += calcularPuntos(recursos);
 }
 
-const int AcumuladorPuntos::calcularPuntos(
-        const std::vector<Recurso> recursos) const {
+const int AcumuladorPuntos::calcularPuntos(const std::vector<Recurso> recursos)
+const {
     std::map<char, int> cantidades = {{CARBON, 0}, {HIERRO, 0},
                                       {MADERA, 0}, {TRIGO, 0}};
     int puntos_nuevos = 0;
-
     size_t i;
     for (i = 0; i < recursos.size(); i ++)
         cantidades[recursos[i].obtenerTipo()] += 1;
