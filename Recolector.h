@@ -1,11 +1,11 @@
 #ifndef RECOLECTOR_H
 #define RECOLECTOR_H
 
-#include "Trabajador.h"
+#include "Thread.h"
 #include "Cola.h"
 #include "Inventario.h"
 
-class Recolector: public Trabajador {
+class Recolector: public Thread {
     Cola& cola;
     Inventario& inventario;
 public:

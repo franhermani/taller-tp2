@@ -1,11 +1,11 @@
 #ifndef PRODUCTOR_H
 #define PRODUCTOR_H
 
-#include "Trabajador.h"
+#include "Thread.h"
 #include "Inventario.h"
 #include "AcumuladorPuntos.h"
 
-class Productor: public Trabajador {
+class Productor: public Thread {
     Inventario& inventario;
     AcumuladorPuntos& acumulador;
     int cant_carbon;
