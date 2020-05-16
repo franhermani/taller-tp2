@@ -189,8 +189,13 @@ sin necesidad de estar buscando todos los recursos en una misma cola.
 
 # Aclaraciones
 
+- Al procesar el archivo de trabajadores, la clase Orchestrator valida
+  el formato del archivo, que los trabajadores especificados sean los de la consigna
+  y que las cantidades especificadas sean numeros enteros positivos.
 - Al leer el archivo de recursos no se validan los caracteres. Simplemente
   se hace caso omiso a aquellos caracteres que no pertenecen al enunciado.
-  Esto es asi porque los threads ya están corriendo en este punto y a medida
-  que se encola un recurso los threads lo van buscando, no se puede frenar la
-  ejecución en este punto
+  Esto es así porque, al momento de procesar el archivo, los threads ya están corriendo y,
+  en particular, los recolectores ya están a la espera de que se encolen los recursos.
+  Así, cada vez que se lee un caracter del archivo, se lo encola y un recolector ya puede
+  tomarlo. De este modo, no consideré conveniente frenar la ejecución en caso de que
+  el archivo contenga un caracter no válido.
