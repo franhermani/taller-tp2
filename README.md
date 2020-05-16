@@ -65,6 +65,25 @@ Como etapa final, me embarqué en un proceso de refactorización. Esto incluyó 
 
 # Puntos de interés
 
+### Hilo principal
+
+Haciéndole honor al propósito del hilo principal del programa que es,
+justamente, orquestar el inicio y fin del resto de los hilos, creé una clase
+llamada Orchestrator.
+
+Esta clase centraliza toda la ejecución del programa, y es la "dueña" de
+los recursos compartidos. A su vez, se encarga de:
+- Procesar y parsear el archivo de trabajadores
+- Crear los trabajadores (recolectores y productores)
+- Iniciar los trabajadores (*start()*)
+- Procesar y parsear el archivo de recursos
+- Encolar los recursos en las colas correspondientes
+- Cerrar las colas
+- Esperar a que finalicen los recolectores (*join()*)
+- Cerrar el inventario
+- Esperar a que finalicen los productores (*join()*)
+- Imprimir por pantalla las estadísticas finales
+
 ### Pasaje de objetos
 
 Como punto de partida, decidí inhabilitar los constructores y asignaciones
@@ -94,6 +113,79 @@ Al principio contaba con una clase Trabajador que heredaba de Thread, y las clas
 Recolector y Productor que heredaban de trabajador. Sin embargo, al momento de escribir
 estas líneas, me di cuenta que la clase Trabajador carecía de uso y comportamiento propio,
 con lo cual decidí eliminarla del medio.
+
+De este modo, tanto la clase Recolector como Productor heredan de Thread y redefinen
+el método *run()*.
+- En el caso de Recolector, el método *run()* se encarga de desencolar
+  un recurso de la cola y depositarlo en el inventario
+- En el caso de Productor, el método *run()* se encarga de consumir ciertos
+  recursos del inventario y depositarlos en el acumulador de puntos
+
+Es importante destacar que todos los threads inician al mismo tiempo,
+pero los recolectores finalizan antes que los productores. Esto es así ya que,
+justamente, la finalización de los recolectores es la señal de que no hay más
+recursos para depositar en el inventario, momento en el cual se cierra el mismo
+y se avisa a los productores, para que no sigan buscando recursos que nunca van a llegar.
+
+### Mutex
+
+Como se mencionó en la sección anterior, apliqué el patrón Monitor, según el cual
+encapsulé los Mutex en las clases que representan recursos compartidos. Se trata
+de la clase Cola, Inventario y AcumuladorPuntos. Fuera de estas clases no se hizo uso
+de ningún mutex.
+
+Inicialmente, caí en la tentación de colocar un mutex en cada método de las clases
+mencionadas, pero esto me ocasionó dos deadlocks. Así, me detuve a pensar cuáles eran
+realmente las secciones críticas, y dejé solo los mutex necesarios. Acto seguido,
+ambos deadlocks desaparecieron.
+
+Las secciones críticas de la Cola son:
+- Encolar un recurso
+- Desencolar un recurso
+- Obtener su largo
+- Cerrarse
+
+Las secciones críticas del Inventario son:
+- Depositar un recurso (esto es, encolarlo en la Cola correspondiente)
+- Consumir un conjunto de recursos (esto es, desencolar recursos de
+  las Colas correspondientes)
+- Cerrarse
+
+Las secciones críticas del AcumuladorPuntos son:
+- Sumar puntos
+- Obtener puntos
+
+### Condition Variables
+
+Clase Cola:
+- Cada vez que un thread llama al método *desencolar()*, entra en un while
+  que solo se rompe si la cola tiene algún elemento. Si la cola está vacía,
+  el thread ingresa en estado *wait* hasta que se inserte un nuevo elemento
+  o bien se cierre la cola.
+- Cada vez que se encola un nuevo elemento, se notifica a todos los threads
+  que estaban en estado *wait* mediante *notify_all()*
+- Cuando se cierra la cola, se notifica a todos los threads
+  que estaban en estado *wait* mediante *notify_all()*
+
+Clase Inventario:
+- Cada vez que un thread llama al método *consumirRecursos()*, entra en un while
+  que solo se rompe si todos los recursos solicitados están disponibles.
+  Para ello, se llama al método *armarConjunto()* que realiza un chequeo de la
+  disponibilidad, y solo en caso de tener suficiente procede a desencolar
+  los recursos. Si no hay suficientes recursos, el thread ingresa en estado *wait*
+  hasta que se inserte un nuevo elemento o bien se cierre el inventario.
+- Cada vez que se encola un nuevo elemento, se notifica a todos los threads
+  que estaban en estado *wait* mediante *notify_all()*
+- Cuando se cierra el inventario, se notifica a todos los threads
+  que estaban en estado *wait* mediante *notify_all()* 
+
+### Modelado del inventario
+
+El inventario lo modelé como un conjunto de cuatro colas bloqueantes,
+una por cada recurso (carbón, hierro, madera y trigo).
+Esto facilita el consumo de recursos por parte de los productores, ya que
+se llama al método desencolar en cada cola según la cantidad solicitada,
+sin necesidad de estar buscando todos los recursos en una misma cola.
 
 # Aclaraciones
 
