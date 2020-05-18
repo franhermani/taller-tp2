@@ -198,6 +198,14 @@ sin necesidad de estar buscando todos los recursos en una misma cola.
 
 ![img2](images/img2.png)
 
+### Diagrama de secuencia UML - Recolector
+
+![img3](images/img3.png)
+
+### Diagrama de secuencia UML - Productor
+
+![img4](images/img4.png)
+
 # Aclaraciones
 
 - Al procesar el archivo de trabajadores, la clase Orchestrator valida
