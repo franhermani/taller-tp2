@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <utility>
 #include "defines.h"
 #include "Orchestrator.h"
 #include "Recurso.h"
