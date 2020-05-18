@@ -56,7 +56,7 @@ Como etapa final, me embarqué en un proceso de refactorización. Esto incluyó 
 - Modularización de funciones
 - Mejor asignación de responsabilidades
 - Uso de *member initializer lists*
-- Uso de constantes en funciones que había pasado por alto
+- Uso de *const* en funciones que había pasado por alto
 - Inclusión de un archivo *defines.h* para las constantes del enunciado
 - Pasaje de las definiciones de todos los métodos a los *.cpp*
 - Inhabilitación de constructores y asignaciones por copia en clases
@@ -84,6 +84,10 @@ los recursos compartidos. A su vez, se encarga de:
 - Cerrar el inventario
 - Esperar a que finalicen los productores (*join()*)
 - Imprimir por pantalla las estadísticas finales
+
+El siguiente diagrama lo muestra en detalle:
+
+![img2](images/img2.png)
 
 ### Pasaje de objetos
 
@@ -117,10 +121,16 @@ con lo cual decidí eliminarla del medio.
 
 De este modo, tanto la clase Recolector como Productor heredan de Thread y redefinen
 el método *run()*.
-- En el caso de Recolector, el método *run()* se encarga de desencolar
-  un recurso de la cola y depositarlo en el inventario
-- En el caso de Productor, el método *run()* se encarga de consumir ciertos
-  recursos del inventario y depositarlos en el acumulador de puntos
+
+En el caso de Recolector, el método *run()* se encarga de desencolar
+un recurso de la cola y depositarlo en el inventario
+
+![img3](images/img3.png)
+
+En el caso de Productor, el método *run()* se encarga de consumir ciertos
+recursos del inventario y depositarlos en el acumulador de puntos
+
+![img4](images/img4.png)
 
 Es importante destacar que todos los threads inician al mismo tiempo,
 pero los recolectores finalizan antes que los productores. Esto es así ya que,
@@ -132,7 +142,7 @@ y se avisa a los productores, para que no sigan buscando recursos que nunca van 
 
 Como se mencionó en la sección anterior, apliqué el patrón Monitor, según el cual
 encapsulé los Mutex en las clases que representan recursos compartidos. Se trata
-de la clase Cola, Inventario y AcumuladorPuntos. Fuera de estas clases no se hizo uso
+de las clases Cola, Inventario y AcumuladorPuntos. Fuera de ellas no se hizo uso
 de ningún mutex.
 
 Inicialmente, caí en la tentación de colocar un mutex en cada método de las clases
@@ -193,18 +203,6 @@ sin necesidad de estar buscando todos los recursos en una misma cola.
 ### Diagrama de clases UML
 
 ![img1](images/img1.png)
-
-### Diagrama de secuencia UML - Orchestrator
-
-![img2](images/img2.png)
-
-### Diagrama de secuencia UML - Recolector
-
-![img3](images/img3.png)
-
-### Diagrama de secuencia UML - Productor
-
-![img4](images/img4.png)
 
 # Aclaraciones
 
