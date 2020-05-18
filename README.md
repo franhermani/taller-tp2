@@ -55,6 +55,7 @@ Como etapa final, me embarqué en un proceso de refactorización. Esto incluyó 
 
 - Modularización de funciones
 - Mejor asignación de responsabilidades
+- Uso de *member initializer lists*
 - Uso de constantes en funciones que había pasado por alto
 - Inclusión de un archivo *defines.h* para las constantes del enunciado
 - Pasaje de las definiciones de todos los métodos a los *.cpp*
@@ -186,6 +187,16 @@ una por cada recurso (carbón, hierro, madera y trigo).
 Esto facilita el consumo de recursos por parte de los productores, ya que
 se llama al método desencolar en cada cola según la cantidad solicitada,
 sin necesidad de estar buscando todos los recursos en una misma cola.
+
+# Diagramas
+
+### Diagrama de clases UML
+
+![img1](images/img1.png)
+
+### Diagrama de secuencia UML - Orchestrator
+
+![img2](images/img2.png)
 
 # Aclaraciones
 
