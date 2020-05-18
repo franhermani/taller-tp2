@@ -66,6 +66,10 @@ Como etapa final, me embarqué en un proceso de refactorización. Esto incluyó 
 
 # Puntos de interés
 
+### Diagrama de clases UML
+
+![img1](images/img1.png)
+
 ### Hilo principal
 
 Haciéndole honor al propósito del hilo principal del programa que es,
@@ -123,12 +127,12 @@ De este modo, tanto la clase Recolector como Productor heredan de Thread y redef
 el método *run()*.
 
 En el caso de Recolector, el método *run()* se encarga de desencolar
-un recurso de la cola y depositarlo en el inventario
+un recurso de la cola y depositarlo en el inventario:
 
 ![img3](images/img3.png)
 
 En el caso de Productor, el método *run()* se encarga de consumir ciertos
-recursos del inventario y depositarlos en el acumulador de puntos
+recursos del inventario y depositarlos en el acumulador de puntos:
 
 ![img4](images/img4.png)
 
@@ -197,12 +201,6 @@ una por cada recurso (carbón, hierro, madera y trigo).
 Esto facilita el consumo de recursos por parte de los productores, ya que
 se llama al método desencolar en cada cola según la cantidad solicitada,
 sin necesidad de estar buscando todos los recursos en una misma cola.
-
-# Diagramas
-
-### Diagrama de clases UML
-
-![img1](images/img1.png)
 
 # Aclaraciones
 
