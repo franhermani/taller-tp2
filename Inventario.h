@@ -14,7 +14,7 @@ class Inventario {
     Cola colaHierro;
     Cola colaMadera;
     Cola colaTrigo;
-    bool esta_cerrado;
+    bool estaCerrado;
 
     // Recibe un vector de recursos vacío y lo llena desencolando de las colas
     // las cantidades necesarias de cada recurso

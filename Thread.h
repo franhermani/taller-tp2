@@ -13,13 +13,13 @@ public:
     // Inicializa el thread
     void start();
 
-    // Ejecuta el thread (virtual)
+    // Ejecuta el thread (redefinido por sus clases derivadas)
     virtual void run() = 0;
 
     // Finaliza el thread
     void join();
 
-    // Destructor (virtual)
+    // Destructor
     virtual ~Thread();
 
     // Constructor y asignacion por copia deshabilitados

@@ -4,7 +4,7 @@
 #include "Inventario.h"
 #include "InventarioCerradoException.h"
 
-Inventario::Inventario() : esta_cerrado(false) {}
+Inventario::Inventario() : estaCerrado(false) {}
 
 void Inventario::depositarRecurso(Recurso recurso) {
     std::unique_lock<std::mutex> lock(mutex);
@@ -28,7 +28,7 @@ const std::vector<Recurso> Inventario::consumirRecursos(const int cant_carbon,
 
     while (! armarConjunto(recursos, cant_carbon, cant_hierro, cant_madera,
                            cant_trigo)) {
-        if (esta_cerrado) throw InventarioCerradoException();
+        if (estaCerrado) throw InventarioCerradoException();
         cv.wait(lock);
     }
     return recursos;
@@ -57,7 +57,7 @@ const bool Inventario::armarConjunto(std::vector<Recurso>& recursos,
 
 void Inventario::cerrar() {
     std::unique_lock<std::mutex> lock(mutex);
-    esta_cerrado = true;
+    estaCerrado = true;
     cv.notify_all();
 }
 

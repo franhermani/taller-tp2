@@ -10,7 +10,7 @@ class Cola {
     std::mutex mutex;
     std::condition_variable cv;
     std::queue<Recurso> recursos;
-    bool esta_cerrada;
+    bool estaCerrada;
 
 public:
     // Constructor

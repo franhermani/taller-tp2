@@ -25,8 +25,8 @@ public:
     Productor(const Productor& other) = delete;
     Productor& operator=(const Productor& other) = delete;
 
-    // Intenta obtener un conjunto de recursos del inventario y
-    // depositarlos en el acumulador de puntos
+    // Intenta obtener un conjunto de recursos del inventario y depositarlos
+    // en el acumulador de puntos hasta que el inventario se cierre
     virtual void run() override;
 };
 

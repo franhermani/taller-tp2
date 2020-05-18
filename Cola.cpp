@@ -3,7 +3,7 @@
 #include "Cola.h"
 #include "ColaCerradaException.h"
 
-Cola::Cola() : esta_cerrada(false) {}
+Cola::Cola() : estaCerrada(false) {}
 
 void Cola::encolar(Recurso recurso) {
     std::unique_lock<std::mutex> lock(mutex);
@@ -15,7 +15,7 @@ Recurso Cola::desencolar() {
     std::unique_lock<std::mutex> lock(mutex);
 
     while (recursos.empty()) {
-        if (esta_cerrada) throw ColaCerradaException();
+        if (estaCerrada) throw ColaCerradaException();
         cv.wait(lock);
     }
     Recurso recurso = recursos.front();
@@ -30,6 +30,6 @@ const int Cola::obtenerLargo() {
 
 void Cola::cerrar() {
     std::unique_lock<std::mutex> lock(mutex);
-    esta_cerrada = true;
+    estaCerrada = true;
     cv.notify_all();
 }

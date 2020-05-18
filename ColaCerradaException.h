@@ -1,7 +1,7 @@
 #include <exception>
 
-#ifndef COLACERRADAEXCEPTION_H
-#define COLACERRADAEXCEPTION_H
+#ifndef COLA_CERRADA_EXCEPTION_H
+#define COLA_CERRADA_EXCEPTION_H
 
 struct ColaCerradaException : public std::exception {
     const char * what() const throw() {
@@ -9,4 +9,4 @@ struct ColaCerradaException : public std::exception {
     }
 };
 
-#endif // COLACERRADAEXCEPTION_H
+#endif // COLA_CERRADA_EXCEPTION_H
