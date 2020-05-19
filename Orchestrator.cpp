@@ -22,12 +22,17 @@ const int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
         std::cout << "Error al abrir el archivo de trabajadores\n";
         return ERROR;
     }
+    bool error = false;
     std::string linea;
-    while (getline(trabajadores_file, linea))
-        if (parsearLineaTrabajadores(linea) == ERROR) return ERROR;
-
+    while (getline(trabajadores_file, linea)) {
+        if (parsearLineaTrabajadores(linea) == ERROR) {
+            error = true;
+            break;
+        }
+    }
     trabajadores_file.close();
 
+    if (error) return ERROR;
     return OK;
 }
 
@@ -43,9 +48,6 @@ const int Orchestrator::procesarArchivoRecursos(const std::string& path) {
         for (char& c : linea) parsearCaracterRecursos(c);
 
     recursos_file.close();
-    colaAgricultores.cerrar();
-    colaMineros.cerrar();
-    colaLeniadores.cerrar();
 
     return OK;
 }
@@ -142,12 +144,22 @@ void Orchestrator::finalizarTrabajadores() {
         recolectores[i]->join();
         delete recolectores[i];
     }
-    inventario.cerrar();
+    cerrarInventario();
 
     for (i = 0; i < productores.size(); i ++) {
         productores[i]->join();
         delete productores[i];
     }
+}
+
+void Orchestrator::cerrarColas() {
+    colaAgricultores.cerrar();
+    colaLeniadores.cerrar();
+    colaMineros.cerrar();
+}
+
+void Orchestrator::cerrarInventario() {
+    inventario.cerrar();
 }
 
 void Orchestrator::imprimirEstadisticas() {

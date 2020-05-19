@@ -19,10 +19,15 @@ int main(int argc, char *argv[]) {
 
     orchestrator.iniciarTrabajadores();
 
+    bool error = false;
     if (orchestrator.procesarArchivoRecursos(recursos_path) == ERROR)
-        return ERROR;
+        error = true;
 
+    orchestrator.cerrarColas();
     orchestrator.finalizarTrabajadores();
+
+    if (error) return ERROR;
+
     orchestrator.imprimirEstadisticas();
 
     return OK;

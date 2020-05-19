@@ -42,6 +42,9 @@ class Orchestrator {
     // Crea un recurso del tipo 'c' y lo agrega a la cola correspondiente
     void encolarRecurso(const char& c);
 
+    // Cierra el inventario
+    void cerrarInventario();
+
 public:
     // Constructor
     Orchestrator();
@@ -63,6 +66,9 @@ public:
 
     // Finaliza los trabajadores (threads) mediante el comando join()
     void finalizarTrabajadores();
+
+    // Cierra las colas bloqueantes de los recolectores
+    void cerrarColas();
 
     // Imprime por pantalla las estadisticas finales del inventario
     // y del acumulador de puntos
