@@ -1,6 +1,7 @@
 #ifndef PRODUCTOR_H
 #define PRODUCTOR_H
 
+#include <vector>
 #include "Thread.h"
 #include "Inventario.h"
 #include "AcumuladorPuntos.h"
@@ -12,6 +13,9 @@ class Productor: public Thread {
     int cant_hierro;
     int cant_madera;
     int cant_trigo;
+
+    // Calcula los puntos que representan la lista de recursos recibida
+    const int calcularPuntos(const std::vector<Recurso> recursos) const;
 
 public:
     // Constructor
