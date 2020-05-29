@@ -6,7 +6,7 @@
 #include "defines.h"
 #include "InventarioCerradoException.h"
 
-#define SLEEP_TIME 60
+#define SLEEP_TIME 60000
 
 Productor::Productor(Inventario &inventario, AcumuladorPuntos &acumulador,
         const int cant_carbon, const int cant_hierro,
@@ -33,20 +33,20 @@ const int Productor::calcularPuntos(const std::vector<Recurso> recursos)
 const {
     std::map<char, int> cantidades = {{CARBON, 0}, {HIERRO, 0},
                                       {MADERA, 0}, {TRIGO, 0}};
-    int puntos_nuevos = 0;
+    int puntos = 0;
     size_t i;
     for (i = 0; i < recursos.size(); i ++)
         cantidades[recursos[i].obtenerTipo()] += 1;
 
     if (cantidades[TRIGO] == CANT_T_COCINERO &&
         cantidades[CARBON] == CANT_C_COCINERO) {
-        puntos_nuevos = PUNTOS_COCINERO;
+        puntos = PUNTOS_COCINERO;
     } else if (cantidades[MADERA] == CANT_M_CARPINTERO &&
                cantidades[HIERRO] == CANT_H_CARPINTERO) {
-        puntos_nuevos = PUNTOS_CARPINTERO;
+        puntos = PUNTOS_CARPINTERO;
     } else if (cantidades[CARBON] == CANT_C_ARMERO &&
                cantidades[HIERRO] == CANT_H_ARMERO) {
-        puntos_nuevos = PUNTOS_ARMERO;
+        puntos = PUNTOS_ARMERO;
     }
-    return puntos_nuevos;
+    return puntos;
 }

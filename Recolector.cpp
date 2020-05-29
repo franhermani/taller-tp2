@@ -3,7 +3,7 @@
 #include "Recolector.h"
 #include "ColaCerradaException.h"
 
-#define SLEEP_TIME 50
+#define SLEEP_TIME 50000
 
 Recolector::Recolector(Cola& cola, Inventario& inventario) :
 cola(cola), inventario(inventario) {}
