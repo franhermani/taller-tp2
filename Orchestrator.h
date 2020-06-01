@@ -4,12 +4,14 @@
 #include <string>
 #include <vector>
 #include "Cola.h"
+#include "FileParser.h"
 #include "Recolector.h"
 #include "Productor.h"
 #include "Inventario.h"
 #include "AcumuladorPuntos.h"
 
 class Orchestrator {
+    FileParser parser;
     Cola colaAgricultores;
     Cola colaLeniadores;
     Cola colaMineros;
@@ -17,14 +19,6 @@ class Orchestrator {
     std::vector<Productor*> productores;
     Inventario inventario;
     AcumuladorPuntos acumuladorPuntos;
-
-    // Parsea una linea del archivo de trabajadores obteniendo
-    // el trabajador y la cantidad correspondientes
-    const int parsearLineaTrabajadores(const std::string& linea);
-
-    // Parsea un caracter del archivo de recursos obteniendo
-    // el recurso correspondiente
-    void parsearCaracterRecursos(const char& c);
 
     // Delega la creacion de trabajadores segun sean recolectores o productores
     void crearTrabajadores(const std::string& trabajador, const int& cant);
@@ -53,13 +47,13 @@ public:
     Orchestrator(const Orchestrator& other) = delete;
     Orchestrator& operator=(const Orchestrator& other) = delete;
 
-    // Procesa el archivo de trabajadores y crea
-    // las instancias correspondientes
-    const int procesarArchivoTrabajadores(const std::string& path);
+    // Procesa el archivo de trabajadores haciendo uso del parser
+    // y crea las instancias correspondientes
+    void procesarArchivoTrabajadores(const std::string& path);
 
-    // Procesa el archivo de recursos y crea
-    // las instancias correspondientes
-    const int procesarArchivoRecursos(const std::string& path);
+    // Procesa el archivo de recursos haciendo uso del parser
+    // y crea las instancias correspondientes
+    void procesarArchivoRecursos(const std::string& path);
 
     // Inicializa los trabajadores (threads) mediante el comando start()
     void iniciarTrabajadores();

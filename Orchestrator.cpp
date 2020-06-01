@@ -1,8 +1,7 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <map>
 #include <utility>
 #include "defines.h"
 #include "Orchestrator.h"
@@ -10,74 +9,20 @@
 #include "Recolector.h"
 #include "Productor.h"
 
-#define OK 0
-#define ERROR 1
-
 Orchestrator::Orchestrator() {}
 
-const int Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
-    std::ifstream trabajadores_file;
-    trabajadores_file.open(path, std::ifstream::in);
-    if (! trabajadores_file.good()) {
-        std::cout << "Error al abrir el archivo de trabajadores\n";
-        return ERROR;
-    }
-    bool error = false;
-    std::string linea;
-    while (getline(trabajadores_file, linea)) {
-        if (parsearLineaTrabajadores(linea) == ERROR) {
-            error = true;
-            break;
-        }
-    }
-    trabajadores_file.close();
+void Orchestrator::procesarArchivoTrabajadores(const std::string& path) {
+    std::map<std::string, int> trabajadores_map =
+            parser.parsearArchivoTrabajadores(path);
 
-    if (error) return ERROR;
-    return OK;
+    for (auto const& kv : trabajadores_map)
+        crearTrabajadores(kv.first, kv.second);
 }
 
-const int Orchestrator::procesarArchivoRecursos(const std::string& path) {
-    std::ifstream recursos_file;
-    recursos_file.open(path, std::ifstream::in);
-    if (! recursos_file.good()) {
-        std::cout << "Error al abrir el archivo de recursos\n";
-        return ERROR;
-    }
-    std::string linea;
-    while (getline(recursos_file, linea))
-        for (char& c : linea) parsearCaracterRecursos(c);
+void Orchestrator::procesarArchivoRecursos(const std::string& path) {
+    std::vector<char> recursos_vector = parser.parsearArchivoRecursos(path);
 
-    recursos_file.close();
-
-    return OK;
-}
-
-const int Orchestrator::parsearLineaTrabajadores(const std::string& linea) {
-    std::vector<std::string> t = {AGRICULTORES, LENIADORES, MINEROS,
-                                  COCINEROS, CARPINTEROS, ARMEROS};
-
-    std::string trabajador = linea.substr(0, linea.find(DELIM)),
-                cant = linea.substr(linea.find(DELIM) + 1, std::string::npos);
-
-    if (std::count(t.begin(), t.end(), trabajador) == 0) {
-        std::cout << "Trabajador inválido en el archivo de trabajadores\n";
-        return ERROR;
-    }
-    try {
-        int cant_i = std::stoi(cant);
-        crearTrabajadores(trabajador, cant_i);
-    }
-    catch(std::invalid_argument) {
-        std::cout << "Cantidad inválida en el archivo de trabajadores\n";
-        return ERROR;
-    }
-    return OK;
-}
-
-void Orchestrator::parsearCaracterRecursos(const char& c) {
-    std::vector<char> recursos = {CARBON, HIERRO, MADERA, TRIGO};
-
-    if (std::count(recursos.begin(), recursos.end(), c) > 0)
+    for (const char& c: recursos_vector)
         encolarRecurso(c);
 }
 
@@ -117,7 +62,7 @@ void Orchestrator::crearProductores(const int& cant, int cant_carbon,
                               cant_trigo));
 }
 
-void Orchestrator::encolarRecurso(const char &c) {
+void Orchestrator::encolarRecurso(const char& c) {
     Recurso recurso(c);
 
     if (c == CARBON || c == HIERRO) {

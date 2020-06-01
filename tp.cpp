@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <exception>
 #include "Orchestrator.h"
 
 #define OK 0
@@ -13,22 +14,27 @@ int main(int argc, char *argv[]) {
     }
     Orchestrator orchestrator;
     const std::string trabajadores_path = argv[1], recursos_path = argv[2];
-
-    if (orchestrator.procesarArchivoTrabajadores(trabajadores_path) == ERROR)
-        return ERROR;
-
-    orchestrator.iniciarTrabajadores();
-
     bool error = false;
-    if (orchestrator.procesarArchivoRecursos(recursos_path) == ERROR)
-        error = true;
 
-    orchestrator.cerrarColas();
-    orchestrator.finalizarTrabajadores();
-
-    if (error) return ERROR;
-
-    orchestrator.imprimirEstadisticas();
-
+    try {
+        orchestrator.procesarArchivoTrabajadores(trabajadores_path);
+        orchestrator.iniciarTrabajadores();
+        try {
+            orchestrator.procesarArchivoRecursos(recursos_path);
+        } catch(std::runtime_error& e) {
+            std::cerr << e.what();
+            error = true;
+        }
+        orchestrator.cerrarColas();
+        orchestrator.finalizarTrabajadores();
+        if (error) return ERROR;
+        orchestrator.imprimirEstadisticas();
+    } catch(std::exception& e) {
+        std::cerr << e.what();
+        return ERROR;
+    } catch(...) {
+        std::cerr << "Error inesperado\n";
+        return ERROR;
+    }
     return OK;
 }
